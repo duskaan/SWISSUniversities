@@ -14,11 +14,13 @@ use dao\CourseDAO;
         <table class="table">
             <thead>
             <tr>
-                <th>Institute </th>
-                <th>Degree </th>
+                <th>Course ID </th>
+                <th>Name </th>
+                <th>Startdate </th>
                 <th>Discipline </th>
+                <th>Degree </th>
                 <th>Attendance </th>
-                <th>Region </th>
+                <th>Duration </th>
             </tr>
             </thead>
             <tbody>
@@ -27,17 +29,17 @@ use dao\CourseDAO;
             //$courses = findByUniversity(1);
             foreach($courses as $course): ?>
                 <tr>
-                    <td><?php echo $course->getId(); ?> </td>
-                    <td><?php echo $course->getName(); ?> </td>
-                    <td><?php echo $course->getStartDate(); ?> </td>
-                    <td><?php echo $course->getDiscipline(); ?> </td>
-                    <td><?php echo $course->getDegree(); ?></td>
-                    <td><?php echo $course->getattendance(); ?> </td>
-                    <td><?php echo $course->getduration(); ?> </td>
+                    <td><?php echo $course["ID_course"]; ?> </td>
+                    <td><?php echo $course["name"]; ?> </td>
+                    <td><?php echo $course["startdate"]; ?> </td>
+                    <td><?php echo $course["discipline"]; ?> </td>
+                    <td><?php echo $course["degree"];?></td>
+                    <td><?php echo $course["attendance"]; ?> </td>
+                    <td><?php echo $course["duration"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-default" role="button" href="customer/edit?id=<?php echo $customer->getId(); ?>"> <i class="fa fa-edit"></i></a>
-                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="customer/delete?id=<?php echo $customer->getId(); ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                            <a class="btn btn-default" role="button" href="customer/edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
+                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="customer/delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </td>
                 </tr>

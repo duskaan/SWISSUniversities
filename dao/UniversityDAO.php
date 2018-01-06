@@ -75,11 +75,11 @@ class UniversityDAO extends BasicDAO {
 	 */
 	public function findByEmail($email) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM agent WHERE email = :email;');
+            SELECT * FROM university WHERE email = :email;');
         $stmt->bindValue(':email', $email);
         $stmt->execute();
         if ($stmt->rowCount() > 0)
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Agent")[0];
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\University")[0];
         return null;
     }
 }

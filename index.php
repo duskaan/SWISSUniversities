@@ -68,9 +68,13 @@ Router::route("POST", "/register", function () {
                     $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                     $universityDAO->update($university);
                 }
+                Router::redirect("/courseOverview.php");
             }
+        }else{
+            Router::redirect("/index.php");
         }
-        Router::redirect("/");
+
+
     });
 
     Router::route("GET", "/logout", function () {
@@ -147,14 +151,14 @@ Router::route("POST", "/register", function () {
     });
 
     Router::route_auth("GET", "/customer/create", $authFunction, function () {
-        layoutSetContent("customerEdit.php");
+        layoutSetContent("courseEdit.php");
     });
 
     Router::route_auth("GET", "/customer/edit", $authFunction, function () {
         $id = $_GET["id"];
-        global $customer;
-        $customer = WECRMServiceImpl::getInstance()->readCustomer($id);
-        layoutSetContent("customerEdit.php");
+        global $course;
+        $course = WECRMServiceImpl::getInstance()->readCustomer($id);
+        layoutSetContent("courseEdit.php");
     });
 
     Router::route_auth("GET", "/customer/delete", $authFunction, function () {
