@@ -2,7 +2,7 @@
 
 namespace dao;
 
-use domain\Agent;
+use domain\University;
 
 /**
  * @access public
@@ -17,17 +17,20 @@ class UniversityDAO extends BasicDAO {
 	 * @ParamType agent Agent
 	 * @ReturnType Agent
 	 */
-	public function create(University $agent) {
+	public function create(University $university) {
         $stmt = $this->pdoInstance->prepare('
-        INSERT INTO university ("University ID", name,region,description,institute, email, password)VALUES
-          VALUES(:universityID, :name,:region,:description,:institute,:email, :password)
-        );');
-        $stmt->bindValue(':name', $agent->getName());
-        $stmt->bindValue(':email', $agent->getEmail());
-        $stmt->bindValue(':emailExist', $agent->getEmail());
-        $stmt->bindValue(':password', $agent->getPassword());
+        INSERT INTO university ( organization,region,description,institute, email, password)
+          VALUES(:organization,:region,:description,:institute,:email, :password);');
+
+        $stmt->bindValue(':organization', $university->getOrganization());
+        $stmt->bindValue(':region', $university->getRegion());
+        $stmt->bindValue(':description', $university->getDescription());
+        $stmt->bindValue(':institute', $university->getInstitute());
+        $stmt->bindValue(':email', $university->getEmail());
+        //$stmt->bindValue(':emailExist', $university->getEmail());
+        $stmt->bindValue(':password', $university->getPassword());
         $stmt->execute();
-        return $this->read($this->pdoInstance->lastInsertId());
+        //return $this->read($this->pdoInstance->lastInsertId());
 	}
 
 	/**

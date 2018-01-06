@@ -39,6 +39,7 @@
                 <div class="caption">
                     <h3>FHNW </h3>
                     <p>University of Applied Sciences and Arts Northwestern Switzerland</p>
+                    <p></p>
                 </div>
             </div>
             <div class="col-md-4" style="padding:15px;">

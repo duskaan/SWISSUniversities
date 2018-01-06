@@ -29,8 +29,13 @@
     <nav class="navbar navbar-default navbar-fixed-top navigation-clean-search" id="nav-bar-custom">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="margin-left:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;"><img src="assets/img/NewLogo1.svg" id="logo"><img src="assets/img/Test 6.png" id="brand" style="padding-top:0px;margin-top:9px;margin-left:6px;"></a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="#"
+                   style="margin-left:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;"><img
+                            src="assets/img/NewLogo1.svg" id="logo"><img src="assets/img/Test 6.png" id="brand"
+                                                                         style="padding-top:0px;margin-top:9px;margin-left:6px;"></a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span
+                            class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                            class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">

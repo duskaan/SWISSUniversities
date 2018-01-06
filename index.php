@@ -11,7 +11,7 @@ require_once("view/layout.php");
 use router\Router;
 use http\HTTPException;
 use domain\Customer;
-use domain\Agent;
+use domain\University;
 use dao\CustomerDAO;
 use dao\UniversityDAO;
 
@@ -36,13 +36,17 @@ Router::route("GET", "/register", function () {
 
 Router::route("POST", "/register", function () {
     /* TODO: refactor and use WECRMServiceImpl::getInstance()->editAgent($_POST["name"],$_POST["email"], $_POST["password"]); */
-    $agent = new Agent();
-    $agent->setName($_POST["name"]);
-    $agent->setEmail($_POST["email"]);
-    $agent->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
-    $agentDAO = new UniversityDAO();
-    $agentDAO->create($agent);
-    Router::redirect("/logout");
+    //todo use university
+    $university = new University();
+    $university->setOrganization($_POST["organization"]);
+    $university->setRegion($_POST["region"]);
+    $university->setInstitute($_POST["institute"]);
+    $university->setDescription($_POST["description"]);
+    $university->setEmail($_POST["email"]);
+    $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
+    $universityDAO = new UniversityDAO();
+    $universityDAO->create($university);
+    Router::redirect("/EduResults.php");
 });
 
 Router::route("POST", "/login", function () {
