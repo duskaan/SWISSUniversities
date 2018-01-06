@@ -40,10 +40,10 @@ class UniversityDAO extends BasicDAO {
 	 * @ParamType agentId int
 	 * @ReturnType Agent
 	 */
-	public function read($agentId) {
+	public function read($universityID) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM agent WHERE id = :id;');
-        $stmt->bindValue(':id', $agentId);
+            SELECT * FROM university WHERE ID_university = :id;');
+        $stmt->bindValue(':id', $universityID);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Agent")[0];
     }

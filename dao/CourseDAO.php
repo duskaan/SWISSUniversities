@@ -2,13 +2,13 @@
 
 namespace dao;
 
-use domain\Customer;
+use domain\Course;
 
 /**
  * @access public
  * @author andreas.martin
  */
-class CustomerDAO extends BasicDAO {
+class CourseDAO extends BasicDAO {
 
 	/**
 	 * @access public
@@ -17,14 +17,18 @@ class CustomerDAO extends BasicDAO {
 	 * @ParamType customer Customer
 	 * @ReturnType Customer
 	 */
-	public function create(Customer $customer) {
+	public function create(Course $course) {
         $stmt = $this->pdoInstance->prepare('
-            INSERT INTO customer (name, email, mobile, agentid)
-            VALUES (:name, :email , :mobile, :agentId)');
-        $stmt->bindValue(':name', $customer->getName());
-        $stmt->bindValue(':email', $customer->getEmail());
-        $stmt->bindValue(':mobile', $customer->getMobile());
-        $stmt->bindValue(':agentId', $customer->getAgentId());
+            INSERT INTO course (FK_university, name, startdate, discipline, description, degree, attendance, duration)
+            VALUES (:FK_university, :name, :startdate, :discipline, :description, :degree, :attendance, :duration)');
+        $stmt->bindValue(':FK_university', $course->getUniversityID());
+        $stmt->bindValue(':name', $course->getName());
+        $stmt->bindValue(':startdate', $course->getStartDate());
+        $stmt->bindValue(':discipline', $course->getDiscipline());
+        $stmt->bindValue(':description', $course->getDescription());
+        $stmt->bindValue(':degree', $course->getDegree());
+        $stmt->bindValue(':attendance', $course->getAttendance());
+        $stmt->bindValue(':duration', $course->getDuration());
         $stmt->execute();
         //return $this->read($this->pdoInstance->lastInsertId());
 	}
@@ -36,12 +40,12 @@ class CustomerDAO extends BasicDAO {
 	 * @ParamType customerId int
 	 * @ReturnType Customer
 	 */
-	public function read($customerId) {
+	public function read($courseId) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM customer WHERE id = :id;');
-        $stmt->bindValue(':id', $customerId);
+            SELECT * FROM course WHERE ID_course = :id;');
+        $stmt->bindValue(':id', $courseId);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Customer")[0];
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];
 	}
 
 	/**
@@ -86,12 +90,12 @@ class CustomerDAO extends BasicDAO {
 	 * @ParamType agentId int
 	 * @ReturnType Customer[]
 	 */
-	public function findByAgent($agentId) {
+	public function findByUniversity($universityID) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM customer WHERE agentid = :agentId ORDER BY id;');
-        $stmt->bindValue(':agentId', $agentId);
+            SELECT * FROM course WHERE ID_course = :universityID ORDER BY ID_course;');
+        $stmt->bindValue(':agentId', $universityID);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Customer");
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
 	}
 }
 ?>
