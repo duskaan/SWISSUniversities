@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>1616704</ObjectId>
-      <IntrospectionTimestamp>2018-01-06.18:23:47.896</IntrospectionTimestamp>
-      <IntrospectionStateNumber>30187301</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-01-07.11:18:27.420</IntrospectionTimestamp>
+      <IntrospectionStateNumber>30420535</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,8 +30,8 @@
       <ObjectId>13003</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="course_ID_course_seq">
-      <ObjectId>4405027</ObjectId>
-      <StateNumber>30187070</StateNumber>
+      <ObjectId>4406516</ObjectId>
+      <StateNumber>30420500</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
@@ -42,18 +42,18 @@
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <table id="11" parent="3" name="course">
-      <ObjectId>4405029</ObjectId>
-      <StateNumber>30187301</StateNumber>
+      <ObjectId>4406518</ObjectId>
+      <StateNumber>30420535</StateNumber>
     </table>
     <table id="12" parent="3" name="university">
       <ObjectId>4404783</ObjectId>
-      <StateNumber>30187301</StateNumber>
+      <StateNumber>30420535</StateNumber>
     </table>
     <column id="13" parent="11" name="ID_course">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
       <SequenceName>course_ID_course_seq</SequenceName>
       <DefaultExpression>nextval(&apos;&quot;course_ID_course_seq&quot;&apos;::regclass)</DefaultExpression>
     </column>
@@ -61,57 +61,57 @@
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="15" parent="11" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="16" parent="11" name="startdate">
       <Position>4</Position>
       <DataType>date|0</DataType>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="17" parent="11" name="discipline">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="18" parent="11" name="description">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="19" parent="11" name="degree">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="20" parent="11" name="attendance">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>30187070</StateNumber>
+      <StateNumber>30420500</StateNumber>
     </column>
     <column id="21" parent="11" name="duration">
       <Position>9</Position>
-      <DataType>timestamp|0</DataType>
-      <StateNumber>30187070</StateNumber>
+      <DataType>integer|0</DataType>
+      <StateNumber>30420500</StateNumber>
     </column>
     <index id="22" parent="11" name="course_pkey">
-      <ObjectId>4405036</ObjectId>
+      <ObjectId>4406525</ObjectId>
       <ColNames>ID_course</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="23" parent="11" name="course_pkey">
-      <ObjectId>4405037</ObjectId>
+      <ObjectId>4406526</ObjectId>
       <ColNames>ID_course</ColNames>
       <UnderlyingIndexName>course_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="24" parent="11" name="fkuniversity">
-      <ObjectId>4405038</ObjectId>
+    <foreign-key id="24" parent="11" name="fkcourse152510">
+      <ObjectId>4406527</ObjectId>
       <ColNames>FK_university</ColNames>
       <RefTableName>university</RefTableName>
       <RefKeyName>university_pkey</RefKeyName>

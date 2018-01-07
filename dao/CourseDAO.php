@@ -19,7 +19,7 @@ class CourseDAO extends BasicDAO {
 	 */
 	public function create(Course $course) {
         $stmt = $this->pdoInstance->prepare('
-            INSERT INTO course (FK_university, name, startdate, discipline, description, degree, attendance, duration)
+            INSERT INTO course ("FK_university", name, startdate, discipline, description, degree, attendance, duration)
             VALUES (:FK_university, :name, :startdate, :discipline, :description, :degree, :attendance, :duration)');
         $stmt->bindValue(':FK_university', $course->getUniversityID());
         $stmt->bindValue(':name', $course->getName());
@@ -55,18 +55,18 @@ class CourseDAO extends BasicDAO {
 	 * @ParamType customer Customer
 	 * @ReturnType Customer
 	 */
-	public function update(Customer $customer) {
+	public function update(Course $course) {
         $stmt = $this->pdoInstance->prepare('
             UPDATE customer SET name = :name,
                 email = :email,
                 mobile = :mobile
             WHERE id = :id');
-        $stmt->bindValue(':name', $customer->getName());
-        $stmt->bindValue(':email', $customer->getEmail());
-        $stmt->bindValue(':mobile', $customer->getMobile());
-        $stmt->bindValue(':id', $customer->getId());
+        $stmt->bindValue(':name', $course->getName());
+        $stmt->bindValue(':email', $course->getEmail());
+        $stmt->bindValue(':mobile', $course->getMobile());
+        $stmt->bindValue(':id', $course->getId());
         $stmt->execute();
-        return $this->read($customer->getId());
+        return $this->read($course->getId());
 	}
 
 	/**

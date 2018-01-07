@@ -10,7 +10,7 @@ require_once("view/layout.php");
 
 use router\Router;
 use http\HTTPException;
-use domain\Customer;
+use domain\Course;
 use domain\University;
 use dao\CourseDAO;
 use dao\UniversityDAO;
@@ -136,7 +136,7 @@ Router::route("POST", "/register", function () {
         /** TODO: create a prepared SQL statement to retrieve all customers */
         $stmt = $pdoInstance->prepare('
             SELECT * FROM course WHERE "ID_course" = :id ORDER BY "ID_course";');
-        $stmt->bindValue(':id', $_SESSION["agentLogin"]["id"]);
+        $stmt->bindValue(':id', $_SESSION["universityLogin"]["id"]);
         $stmt->execute();
 
 
@@ -157,6 +157,8 @@ Router::route("POST", "/register", function () {
     Router::route_auth("GET", "/customer/edit", $authFunction, function () {
         $id = $_GET["id"];
         global $course;
+        $courseDAO = new CourseDAO();
+        $course =  $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
         $course = WECRMServiceImpl::getInstance()->readCustomer($id);
         layoutSetContent("courseEdit.php");
     });
@@ -164,23 +166,30 @@ Router::route("POST", "/register", function () {
     Router::route_auth("GET", "/customer/delete", $authFunction, function () {
         /* TODO: WECRMServiceImpl::getInstance()->deleteCustomer($id); */
         $id = $_GET["id"];
-        $customerDAO = new CourseDAO();
-        $customer = new Customer();
-        $customer->setId($id);
-        $customerDAO->delete($customer);
+        $courseDAO = new CourseDAO();
+        $course = new Course();
+        $course->setId($id);
+        $courseDAO->delete($course);
         Router::redirect("/");
     });
 
     Router::route_auth("POST", "/customer/update", $authFunction, function () {
-        $customer = new Customer();
-        $customer->setId($_POST["id"]);
-        $customer->setName($_POST["name"]);
-        $customer->setEmail($_POST["email"]);
-        $customer->setMobile($_POST["mobile"]);
-        if ($customer->getId() === "") {
-            WECRMServiceImpl::getInstance()->createCustomer($customer);
+        $course = new Course();
+        $courseDAO = new CourseDAO();
+        $course->setId($_POST["id"]);
+        $course->setName($_POST["name"]);
+        $course->setStartDate($_POST["startDate"]);
+        $course->setDiscipline($_POST["discipline"]);
+        $course->setDescription($_POST["description"]);
+        $course->setDegree($_POST["degree"]);
+        $course->setAttendance($_POST["attendance"]);
+        $course->setDuration($_POST["duration"]);
+        if ($course->getId() === "") {
+            $courseDAO->create($course);
+            //WECRMServiceImpl::getInstance()->createCustomer($course);
         } else {
-            WECRMServiceImpl::getInstance()->updateCustomer($customer);
+            $courseDAO->update($course);
+            //WECRMServiceImpl::getInstance()->updateCustomer($course);
         }
         Router::redirect("/");
     });

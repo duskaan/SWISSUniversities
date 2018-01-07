@@ -9,7 +9,7 @@
 
 namespace domain;
 
-class Customer {
+class Course {
     /**
      * @AttributeType int
      */

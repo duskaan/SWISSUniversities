@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/Register-Form-Dark.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Search1.css">
     <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
     <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
