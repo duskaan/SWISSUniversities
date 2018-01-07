@@ -7,9 +7,18 @@
  */
 use dao\CourseDAO;
 ?>
+<div style="background-color:rgba(19,116,177,0.35);">
+    <div class="container">
+        <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
+            <li><a href="index.php"><span>Home</span></a></li>
+            <li class="active"><span>Course Overview</span></li>
+        </ol>
+    </div>
+</div>
 <div class="container">
     <div class="page-header">
-        <h2 class="text-center">My <strong>customers</strong>.</h2></div>
+        <h2 class="text-center">My <strong>courses</strong>.</h2></div>
+        <h4 class="text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</h4>
     <div class="table-responsive">
         <table class="table">
             <thead>
