@@ -170,11 +170,11 @@ Router::route_auth("POST", "/agent/edit", $authFunction, function () {
     Router::redirect("/logout");
 });
 
-Router::route_auth("GET", "/course/create", $authFunction, function () {
+Router::route_auth("GET", "/course-create", $authFunction, function () {
     layoutSetContent("courseEdit.php");
 });
 
-Router::route_auth("GET", "/course/edit", $authFunction, function () {
+Router::route_auth("GET", "/course-edit", $authFunction, function () {
     $id = $_GET["id"];
     $pdoInstance = Database::connect();
     $stmt = $pdoInstance->prepare('
@@ -195,7 +195,7 @@ Router::route_auth("GET", "/course/edit", $authFunction, function () {
     layoutSetContent("courseEdit.php");*/
 });
 
-Router::route_auth("GET", "/course/delete", $authFunction, function () {
+Router::route_auth("GET", "/course-delete", $authFunction, function () {
     /* TODO: WECRMServiceImpl::getInstance()->deleteCustomer($id); */
     $id = $_GET["id"];
     $courseDAO = new CourseDAO();
@@ -207,7 +207,7 @@ Router::route_auth("GET", "/course/delete", $authFunction, function () {
 Router::route_auth("GET", "Welcome.php", $authFunction, function () {
     layoutSetContent("Welcome.php");
 });
-Router::route_auth("POST", "/course/update", $authFunction, function () {
+Router::route_auth("POST", "/course-update", $authFunction, function () {
     $course = new Course();
     $courseDAO = new CourseDAO();
     $course->setFKUniversity($_SESSION["universityLogin"]["id"]);
@@ -226,7 +226,7 @@ Router::route_auth("POST", "/course/update", $authFunction, function () {
         $courseDAO->update($course);
         //WECRMServiceImpl::getInstance()->updateCustomer($course);
     }
-    Router::redirect("/");
+    Router::redirect("/courseOverview.php");
 });
 
 try {

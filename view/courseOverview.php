@@ -46,8 +46,8 @@
                     <td><?php echo $course["duration"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-default" role="button" href="course/edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
-                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course/delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                            <a class="btn btn-default" role="button" href="course-edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
+                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -56,7 +56,7 @@
         </table>
     </div>
     <div class="btn-group" role="group">
-        <a class="btn btn-default" role="button" href="course/create"> <i class="fa fa-plus-square-o"></i></a>
+        <a class="btn btn-default" role="button" href="course-create"> <i class="fa fa-plus-square-o"></i></a>
         <button class="btn btn-default" type="button"> <i class="fa fa-file-pdf-o"></i></button>
         <button class="btn btn-default" type="button"> <i class="fa fa-envelope-o"></i></button>
     </div>

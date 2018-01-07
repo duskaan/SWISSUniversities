@@ -34,9 +34,9 @@ global $course;
                     <div class="input-group-addon"><span>Discipline </span></div>
                     <div class="col-md-6" >
                         <select class="program-select" name="discipline"required >
-                            <option value="12" selected="<?php echo !empty($course["discipline"]) ? $course["discipline"] : ''; ?>">Engineering</option>
-                            <option value="13">Business</option>
-                            <option value="14">Social</option>
+                            <option value="Engineering" selected="<?php echo !empty($course["discipline"]) ? $course["discipline"] : ''; ?>">Engineering</option>
+                            <option value="Business">Business</option>
+                            <option value="Social">Social</option>
                             <option value="">Ticino</option>
                             <option value="">Graubunden</option>
                             <option value="">Berne</option>
@@ -56,10 +56,10 @@ global $course;
                 <div class="input-group-addon"><span>Degree </span></div>
                 <div class="col-md-6" >
                     <select class="program-select" name="degree" required>
-                        <option value="12" selected="<?php echo !empty($course["degree"]) ? $course["degree"] : ''; ?>"> MSc </option>
-                        <option value="14">CAS</option>
-                        <option value="">MAS</option>
-                        <option value="">DAS</option>
+                        <option value="MSc" selected="<?php echo !empty($course["degree"]) ? $course["degree"] : ''; ?>"> MSc </option>
+                        <option value="CAS">CAS</option>
+                        <option value="MAS">MAS</option>
+                        <option value="DAS">DAS</option>
                         <option value="">Berne</option>
                         <option value="">Central Switzerland</option>
                     </select>
@@ -71,8 +71,8 @@ global $course;
                 <div class="input-group-addon"><span>Attendance </span></div>
                 <div class="col-md-6" >
                     <select class="program-select" name="attendance" required >
-                        <option value="12" selected="<?php echo !empty($course["attendance"]) ? $course["attendance"] : ''; ?>">Full-time</option>
-                        <option value="14">Part-time</option>
+                        <option value="Full-time" selected="<?php echo !empty($course["attendance"]) ? $course["attendance"] : ''; ?>">Full-time</option>
+                        <option value="Part-time">Part-time</option>
                     </select>
                 </div>
             </div>
