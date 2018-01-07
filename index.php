@@ -176,11 +176,23 @@ Router::route_auth("GET", "/course/create", $authFunction, function () {
 
 Router::route_auth("GET", "/course/edit", $authFunction, function () {
     $id = $_GET["id"];
+    $pdoInstance = Database::connect();
+    $stmt = $pdoInstance->prepare('
+            SELECT * FROM course WHERE "ID_course" = :id;');
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    global $course;
+    $course = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    layoutSetContent("courseEdit.php");
+
+    /*
+
+    $id = $_GET["id"];
     global $course;
     $courseDAO = new CourseDAO();
     $course = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
     $course = WECRMServiceImpl::getInstance()->readCustomer($id);
-    layoutSetContent("courseEdit.php");
+    layoutSetContent("courseEdit.php");*/
 });
 
 Router::route_auth("GET", "/course/delete", $authFunction, function () {

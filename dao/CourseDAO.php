@@ -59,16 +59,24 @@ class CourseDAO extends BasicDAO {
 	 */
 	public function update(Course $course) {
         $stmt = $this->pdoInstance->prepare('
-            UPDATE customer SET name = :name,
-                email = :email,
-                mobile = :mobile
-            WHERE id = :id');
+            UPDATE course SET name = :name,
+                startdate = :startdate,
+                discipline= :discipline,
+                description= :description,
+                degree=:degree,
+                attendance=:attendance,
+                duration=:duration
+            WHERE "ID_course" = :id');
         $stmt->bindValue(':name', $course->getName());
-        $stmt->bindValue(':email', $course->getEmail());
-        $stmt->bindValue(':mobile', $course->getMobile());
+        $stmt->bindValue(':startdate', $course->getStartdate());
+        $stmt->bindValue(':discipline', $course->getDiscipline());
+        $stmt->bindValue(':description', $course->getDescription());
+        $stmt->bindValue(':degree', $course->getDegree());
+        $stmt->bindValue(':attendance', $course->getAttendance());
         $stmt->bindValue(':id', $course->getIDcourse());
+        $stmt->bindValue(':duration', $course->getDuration());
         $stmt->execute();
-        return $this->read($course->getIDcourse());
+        //return $this->read($course->getIDcourse());
 	}
 
 	/**
