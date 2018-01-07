@@ -148,6 +148,7 @@ Router::route_auth("GET", "TileTest.php", $authFunction, function () {
 
 Router::route_auth("GET", "courseOverview.php", $authFunction, function () {
     require("database/database.php");
+
     $courseDAO = new CourseDAO();
     global $courses;
 
@@ -162,7 +163,7 @@ Router::route_auth("GET", "courseOverview.php", $authFunction, function () {
     // TODO: extend the customers.php file to show the data
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-
+    require_once("view/courseOverview.php");
     layoutSetContent("courseOverview.php");
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
