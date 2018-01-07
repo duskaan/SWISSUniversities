@@ -5,7 +5,7 @@
  * Date: 06.01.2018
  * Time: 15:31
  */
-use dao\CourseDAO;
+
 ?>
 <div style="background-color:rgba(19,116,177,0.35);">
     <div class="container">
@@ -35,7 +35,6 @@ use dao\CourseDAO;
             <tbody>
             <?php
             global $courses;
-            //$courses = findByUniversity(1);
             foreach($courses as $course): ?>
                 <tr>
                     <td><?php echo $course["ID_course"]; ?> </td>
@@ -47,8 +46,8 @@ use dao\CourseDAO;
                     <td><?php echo $course["duration"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-default" role="button" href="customer/edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
-                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="customer/delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                            <a class="btn btn-default" role="button" href="course/edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
+                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course/delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -57,7 +56,7 @@ use dao\CourseDAO;
         </table>
     </div>
     <div class="btn-group" role="group">
-        <a class="btn btn-default" role="button" href="customer/create"> <i class="fa fa-plus-square-o"></i></a>
+        <a class="btn btn-default" role="button" href="course/create"> <i class="fa fa-plus-square-o"></i></a>
         <button class="btn btn-default" type="button"> <i class="fa fa-file-pdf-o"></i></button>
         <button class="btn btn-default" type="button"> <i class="fa fa-envelope-o"></i></button>
     </div>

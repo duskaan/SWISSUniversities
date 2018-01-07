@@ -3,6 +3,7 @@
 namespace dao;
 
 use domain\Course;
+use domain\University;
 
 /**
  * @access public
@@ -85,14 +86,14 @@ class CourseDAO extends BasicDAO {
 
 	/**
 	 * @access public
-	 * @param int agentId
-	 * @return Customer[]
+	 * @param int universityId
+	 * @return Course[]
 	 * @ParamType agentId int
-	 * @ReturnType Customer[]
+	 * @ReturnType Course[]
 	 */
 	public function findByUniversity($universityID) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM course WHERE "FK_university" = :universityID ORDER BY "ID_course";');
+            SELECT * FROM course WHERE "FK_university" = :universityID ORDER BY "ID_course"');
         $stmt->bindValue(':universityID', $universityID);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");

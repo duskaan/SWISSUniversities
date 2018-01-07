@@ -43,6 +43,7 @@
                     <li class="active" role="presentation"><a href="index.php">Home </a></li>
                     <li role="presentation"><a href="Register.php">Register </a></li>
                     <li role="presentation"><a href="Login.php">Login </a></li>
+                    <li role="presentation"><a href="courseOverview.php">course Overview </a></li>
                     <li role="presentation"><a href="EduProgram.php">Educational Programs</a></li>
                 </ul>
             </div>
