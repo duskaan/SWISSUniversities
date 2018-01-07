@@ -146,7 +146,7 @@ Router::route_auth("GET", "TileTest.php", $authFunction, function () {
     layoutSetContent("view/TileTest.php");
 });
 
-Router::route_auth("GET", "courseOverview.php", $authFunction, function () {
+Router::route_auth("GET", "CourseOverview.php", $authFunction, function () {
     require("database/database.php");
 
     $courseDAO = new CourseDAO();
@@ -163,8 +163,8 @@ Router::route_auth("GET", "courseOverview.php", $authFunction, function () {
     // TODO: extend the customers.php file to show the data
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-    require_once("view/courseOverview.php");
-    layoutSetContent("courseOverview.php");
+    require_once("view/CourseOverview.php");
+    layoutSetContent("CourseOverview.php");
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
     WECRMServiceImpl::getInstance()->editAgent($_POST["name"], $_POST["email"], $_POST["password"]);
@@ -227,7 +227,7 @@ Router::route_auth("POST", "/course-update", $authFunction, function () {
         $courseDAO->update($course);
         //WECRMServiceImpl::getInstance()->updateCustomer($course);
     }
-    Router::redirect("/courseOverview.php");
+    Router::redirect("/CourseOverview.php");
 });
 
 try {
