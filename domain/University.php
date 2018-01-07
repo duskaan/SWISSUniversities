@@ -14,7 +14,7 @@ class University {
     /**
      * @AttributeType int
      */
-    private $id;
+    private $ID_university;
     /**
      * @AttributeType String
      */
@@ -50,8 +50,8 @@ class University {
      * @return int
      * @ReturnType int
      */
-    public function getId() {
-        return $this->id;
+    public function getIDuniversity() {
+        return $this->ID_university;
     }
     /**
      * @access public
@@ -60,8 +60,8 @@ class University {
      * @ParamType id int
      * @ReturnType void
      */
-    public function setId($id) {
-        $this->id = $id;
+    public function setIDuniversity($ID_university) {
+        $this->ID_university = $ID_university;
     }
     /**
      * @access public

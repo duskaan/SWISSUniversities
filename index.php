@@ -51,8 +51,8 @@ Router::route("POST", "/register", function () {
 
     $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
     $_SESSION["universityLogin"]["email"] = $university->getEmail();
-
-    $_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getID();
+    $_SESSION["universityLogin"]["id"] = session_id();
+    //$_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getIDuniversity();
 
     $_SESSION["universityLogin"]["region"] = $university->getRegion();
     $_SESSION["universityLogin"]["description"] = $university->getDescription();
@@ -80,12 +80,14 @@ Router::route("POST", "/login", function () {
         if (password_verify($_POST["password"], $university->getPassword())) {
             $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
             $_SESSION["universityLogin"]["email"] = $email;
-            $_SESSION["universityLogin"]["id"] = $university->getId();
+            $_SESSION["universityLogin"]["id"] = $university->getIDuniversity();
+            session_id($university->getIDuniversity());
             if (password_needs_rehash($university->getPassword(), PASSWORD_DEFAULT)) {
                 $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                 $universityDAO->update($university);
             }
-            Router::redirect("/courseOverview.php");
+           ;
+            Router::redirect("/Welcome.php");
         }
     } else {
         Router::redirect("/index.php");
@@ -150,17 +152,16 @@ Router::route_auth("GET", "courseOverview.php", $authFunction, function () {
     global $courses;
 
     //$courses = $courseDAO->findByUniversity($_SESSION["UniversityLogin"]["id"]);
-    //$pdoInstance = Database::connect();
+    $pdoInstance = Database::connect();
     /** TODO: create a prepared SQL statement to retrieve all customers */
-    /*$stmt = $pdoInstance->prepare('
-        SELECT * FROM course WHERE "ID_course" = :id ORDER BY "ID_course";');
+    $stmt = $pdoInstance->prepare('
+        SELECT * FROM course WHERE "FK_university" = :id ORDER BY "ID_course";');
     $stmt->bindValue(':id', $_SESSION["universityLogin"]["id"]);
     $stmt->execute();
     $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    /** TODO: extend the customers.php file to show the data */
+    // TODO: extend the customers.php file to show the data
 
-    $courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-
+    //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
 
     layoutSetContent("courseOverview.php");
 });
@@ -187,7 +188,7 @@ Router::route_auth("GET", "/course/delete", $authFunction, function () {
     $id = $_GET["id"];
     $courseDAO = new CourseDAO();
     $course = new Course();
-    $course->setId($id);
+    $course->setIDcourse($id);
     $courseDAO->delete($course);
     Router::redirect("/");
 });
@@ -197,16 +198,16 @@ Router::route_auth("GET", "Welcome.php", $authFunction, function () {
 Router::route_auth("POST", "/course/update", $authFunction, function () {
     $course = new Course();
     $courseDAO = new CourseDAO();
-    $course->setUniversityID($_SESSION["universityLogin"]["id"]);
-    $course->setId($_POST["id"]);
+    $course->setFKUniversity($_SESSION["universityLogin"]["id"]);
+    $course->setIDcourse($_POST["id"]);
     $course->setName($_POST["name"]);
-    $course->setStartDate($_POST["startDate"]);
+    $course->setStartdate($_POST["startDate"]);
     $course->setDiscipline($_POST["discipline"]);
     $course->setDescription($_POST["description"]);
     $course->setDegree($_POST["degree"]);
     $course->setAttendance($_POST["attendance"]);
     $course->setDuration($_POST["duration"]);
-    if ($course->getId() === "") {
+    if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
         //WECRMServiceImpl::getInstance()->createCustomer($course);
     } else {

@@ -22,9 +22,10 @@ class CourseDAO extends BasicDAO {
         $stmt = $this->pdoInstance->prepare('
             INSERT INTO course ("FK_university", name, startdate, discipline, description, degree, attendance, duration)
             VALUES (:FK_university, :name, :startdate, :discipline, :description, :degree, :attendance, :duration)');
-        $stmt->bindValue(':FK_university', $course->getUniversityID());
+       // $stmt->bindValue(':FK_university', $course->getUniversityID());
+        $stmt->bindValue(':FK_university', session_id());
         $stmt->bindValue(':name', $course->getName());
-        $stmt->bindValue(':startdate', $course->getStartDate());
+        $stmt->bindValue(':startdate', $course->getStartdate());
         $stmt->bindValue(':discipline', $course->getDiscipline());
         $stmt->bindValue(':description', $course->getDescription());
         $stmt->bindValue(':degree', $course->getDegree());
@@ -65,9 +66,9 @@ class CourseDAO extends BasicDAO {
         $stmt->bindValue(':name', $course->getName());
         $stmt->bindValue(':email', $course->getEmail());
         $stmt->bindValue(':mobile', $course->getMobile());
-        $stmt->bindValue(':id', $course->getId());
+        $stmt->bindValue(':id', $course->getIDcourse());
         $stmt->execute();
-        return $this->read($course->getId());
+        return $this->read($course->getIDcourse());
 	}
 
 	/**

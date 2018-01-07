@@ -29,6 +29,9 @@ use dao\CourseDAO;
             <th>Decription </th>
             <th>Institute </th>
             <th>E-Mail </th>
+            <th>ID </th>
+            <th>Startdate </th>
+
         </tr>
         </thead>
         <tbody>
@@ -37,7 +40,10 @@ use dao\CourseDAO;
                 <td><?php echo $_SESSION["universityLogin"]["region"]; ?> </td>
                 <td><?php echo $_SESSION["universityLogin"]["description"]; ?> </td>
                 <td><?php echo $_SESSION["universityLogin"]["institute"]; ?> </td>
-                <td><?php echo $_SESSION["universityLogin"]["email"];?></td>
+                <td><?php echo $_SESSION["universityLogin"]["email"]; ?> </td>
+                <td><?php echo $_SESSION["universityLogin"]["id"];?></td>
+                <td><?php //echo $_SESSION["universityLogin"]["startDate"];?></td>
+
             </tr>
         </tbody>
     </table><br>

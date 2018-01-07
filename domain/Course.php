@@ -9,11 +9,14 @@
 
 namespace domain;
 
-class Course {
+class Course
+{
     /**
-     * @AttributeType int
+     * @AttributeType String
      */
-    protected $id;
+    protected $ID_course;
+
+
     /**
      * @AttributeType String
      */
@@ -21,7 +24,7 @@ class Course {
     /**
      * @AttributeType date
      */
-    protected $startDate;
+    protected $startdate;
     /**
      * @AttributeType String
      */
@@ -45,17 +48,17 @@ class Course {
     /**
      * @return mixed
      */
-    public function getStartDate()
+    public function getStartdate()
     {
-        return $this->startDate;
+        return $this->startdate;
     }
 
     /**
-     * @param mixed $startDate
+     * @param mixed $startdate
      */
-    public function setStartDate($startDate)
+    public function setStartdate($startdate)
     {
-        $this->startDate = $startDate;
+        $this->startdate = $startdate;
     }
 
     /**
@@ -141,17 +144,17 @@ class Course {
     /**
      * @return mixed
      */
-    public function getUniversityID()
+    public function getFKUniversity()
     {
-        return $this->universityID;
+        return $this->FK_university;
     }
 
     /**
-     * @param mixed $universityID
+     * @param mixed $FK_university
      */
-    public function setUniversityID($universityID)
+    public function setFKUniversity($FK_university)
     {
-        $this->universityID = $universityID;
+        $this->FK_university = $FK_university;
     }
 
     /**
@@ -162,15 +165,16 @@ class Course {
      * @AssociationType int
      * @AssociationMultiplicity 1
      */
-    private $universityID;
+    private $FK_university;
 
     /**
      * @access public
      * @return int
      * @ReturnType int
      */
-    public function getId() {
-        return $this->id;
+    public function getIDcourse()
+    {
+        return $this->ID_course;
     }
 
     /**
@@ -180,8 +184,9 @@ class Course {
      * @ParamType id int
      * @ReturnType void
      */
-    public function setId($id) {
-        $this->id = $id;
+    public function setIDcourse($ID_course)
+    {
+        $this->ID_course = $ID_course;
     }
 
     /**
@@ -189,7 +194,8 @@ class Course {
      * @return String
      * @ReturnType String
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -200,10 +206,8 @@ class Course {
      * @ParamType name String
      * @ReturnType void
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
-
-
-
 }
