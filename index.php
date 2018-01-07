@@ -140,17 +140,19 @@ Router::route("POST", "/register", function () {
         require("database/database.php");
         $courseDAO = new CourseDAO();
         global $courses;
+
         //$courses = $courseDAO->findByUniversity($_SESSION["UniversityLogin"]["id"]);
-        $pdoInstance = Database::connect();
+        //$pdoInstance = Database::connect();
         /** TODO: create a prepared SQL statement to retrieve all customers */
-        $stmt = $pdoInstance->prepare('
+        /*$stmt = $pdoInstance->prepare('
             SELECT * FROM course WHERE "ID_course" = :id ORDER BY "ID_course";');
         $stmt->bindValue(':id', $_SESSION["universityLogin"]["id"]);
         $stmt->execute();
-
-
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
         /** TODO: extend the customers.php file to show the data */
+        
+        $courses=$courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
+
 
         layoutSetContent("courseOverview.php");
     });
