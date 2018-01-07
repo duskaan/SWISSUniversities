@@ -150,7 +150,7 @@ Router::route("POST", "/register", function () {
         $stmt->execute();
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
         /** TODO: extend the customers.php file to show the data */
-        
+
         $courses=$courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
 
 
