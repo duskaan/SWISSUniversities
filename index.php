@@ -70,9 +70,9 @@ Router::route("POST", "/register", function () {
         $university = $universityDAO->findByEmail($email);
         if (isset($university)) {
             if (password_verify($_POST["password"], $university->getPassword())) {
-                $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
+                /*$_SESSION["universityLogin"]["organization"] = $university->getOrganization();
                 $_SESSION["universityLogin"]["email"] = $email;
-                $_SESSION["universityLogin"]["id"] = $university->getId();
+                $_SESSION["universityLogin"]["id"] = $university->getId();*/
                 if (password_needs_rehash($university->getPassword(), PASSWORD_DEFAULT)) {
                     $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                     $universityDAO->update($university);
