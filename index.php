@@ -59,7 +59,7 @@ Router::route("POST", "/register", function () {
     $_SESSION["universityLogin"]["region"] = $university->getRegion();
     $_SESSION["universityLogin"]["description"] = $university->getDescription();
     $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
-    Router::redirect("/Welcome.php");
+    Router::redirect("/Welcome");
 
 
 
@@ -82,7 +82,7 @@ Router::route("POST", "/login", function () {
                 $universityDAO->update($university);
             }
            ;
-            Router::redirect("/Welcome.php");
+            Router::redirect("/Welcome");
         }
     } else {
         Router::redirect("/index.php");
@@ -204,7 +204,7 @@ Router::route_auth("GET", "/course-delete", $authFunction, function () {
     $courseDAO->delete($course);
     Router::redirect("/");
 });
-Router::route_auth("GET", "Welcome.php", $authFunction, function () {
+Router::route_auth("GET", "Welcome", $authFunction, function () {
     layoutSetContent("view/Welcome.php");
 });
 Router::route_auth("POST", "/update", $authFunction, function () {

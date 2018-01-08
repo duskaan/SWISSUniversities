@@ -66,7 +66,7 @@ use dao\CourseDAO;
             </tr>
         </tbody>
     </table><br>
-    <h4><strong>To add, edit and delete courses, please click <a href="CourseOverview.php">here</a>.</strong></h4>
+    <h4><strong>To add, edit and delete courses, please click <a href="CourseOverview">here</a>.</strong></h4>
     <br><br><br>
     <div class="modal fade" role="dialog" tabindex="-1" id="confirm-modal">
         <div class="modal-dialog modal-sm" role="document">
