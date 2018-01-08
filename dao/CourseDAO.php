@@ -105,7 +105,9 @@ class CourseDAO extends BasicDAO {
             SELECT * FROM course WHERE "FK_university" = :universityID ORDER BY "ID_course"');
         $stmt->bindValue(':universityID', $universityID);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
+
+        //return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 }
 ?>

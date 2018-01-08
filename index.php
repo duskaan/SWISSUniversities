@@ -146,13 +146,13 @@ Router::route_auth("GET", "TileTest", $authFunction, function () {
 });
 
 Router::route_auth("GET", "CourseOverview", $authFunction, function () {
-    require("database/database.php");
-    /*
+    //require("database/database.php");
+
     $courseDAO = new CourseDAO();
     global $courses;
 
-    //$courses = $courseDAO->findByUniversity($_SESSION["UniversityLogin"]["id"]);
-    $pdoInstance = Database::connect();
+    $courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
+    //$pdoInstance = Database::connect();
     /** TODO: create a prepared SQL statement to retrieve all customers */
     /*$stmt = $pdoInstance->prepare('
         SELECT * FROM course WHERE "FK_university" = :id ORDER BY "ID_course";');
@@ -162,12 +162,12 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     // TODO: extend the customers.php file to show the data
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*/
-    //require_once("view/CourseOverview.php");
-   // layoutSetContent("view/CourseOverview.php");
+    require_once("view/CourseOverview.php");
+    layoutSetContent("view/CourseOverview.php");
     //require_once("view/EduResults.php");
     //layoutSetContent("view/EduResults.php   ");
-    require_once("view/customers.php");
-    layoutSetContent("view/customers.php");
+   // require_once("view/customers.php");
+    //layoutSetContent("view/customers.php");
 
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
