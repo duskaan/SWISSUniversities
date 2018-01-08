@@ -147,14 +147,14 @@ Router::route_auth("GET", "TileTest", $authFunction, function () {
 
 Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     require("database/database.php");
-/*
+
     $courseDAO = new CourseDAO();
     global $courses;
 
     //$courses = $courseDAO->findByUniversity($_SESSION["UniversityLogin"]["id"]);
     $pdoInstance = Database::connect();
     /** TODO: create a prepared SQL statement to retrieve all customers */
-    /*$stmt = $pdoInstance->prepare('
+    $stmt = $pdoInstance->prepare('
         SELECT * FROM course WHERE "FK_university" = :id ORDER BY "ID_course";');
     $stmt->bindValue(':id', $_SESSION["universityLogin"]["id"]);
     $stmt->execute();
@@ -163,7 +163,10 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*/
     require_once("view/CourseOverview.php");
-    layoutSetContent("view/CourseOverview.php");
+   // layoutSetContent("view/CourseOverview.php");
+    require_once("view/EduResults.php");
+    layoutSetContent("view/EduResults.php");
+
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
     WECRMServiceImpl::getInstance()->editAgent($_POST["name"], $_POST["email"], $_POST["password"]);

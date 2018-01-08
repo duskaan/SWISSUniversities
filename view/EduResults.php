@@ -1,88 +1,77 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tim
+ * Date: 06.01.2018
+ * Time: 15:31
+ */
+
+?>
 <div style="background-color:rgba(19,116,177,0.35);">
     <div class="container">
         <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
             <li><a href="index.php"><span>Home</span></a></li>
-            <li class="active"><span>Educational Programs</span></li>
+            <li class="active"><span>Course Overview</span></li>
         </ol>
     </div>
 </div>
-<div id="promo1" style="background-image:url(&quot;assets/img/Untitled-design-11.png&quot;);margin-top:0px;">
-    <p style="color:rgb(255,255,255);font-size:22px;padding-top:100px;font-weight:normal;">Decide about your Educational Future!</p>
-</div>
-<div class="container site-section" id="welcome">
-    <h1>Choose your what? where? and how? preferences!</h1>
-    <p style="padding-bottom:80px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-        sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
-    <div style="padding-bottom:50px;">
-        <div class="row row-align" style="height:58px;">
-            <div class="col-md-6">
-                <p class="select-paragraph">Institute </p>
-            </div>
-            <div class="col-md-6" style="margin-right:280px;">
-                <select class="program-select" style="font-size:20px;">
-                    <option value="12" selected="">University of Applied Science</option>
-                    <option value="13">University</option>
-                </select>
-            </div>
-        </div>
-        <div class="row row-align" style="height:58px;">
-            <div class="col-md-6">
-                <p class="select-paragraph">Degree </p>
-            </div>
-            <div class="col-md-6" style="margin-right:280px;">
-                <select class="program-select" style="font-size:20px;">
-                    <option value="12" selected="">Bachelor</option>
-                    <option value="13">Master</option>
-                </select>
-            </div>
-        </div>
-        <div class="row row-align" style="height:58px;">
-            <div class="col-md-6">
-                <p class="select-paragraph">Discipline </p>
-            </div>
-            <div class="col-md-6" style="margin-right:280px;">
-                <select class="program-select" style="font-size:20px;">
-                    <optgroup label="This is a group">
-                        <option value="12" selected="">This is item 1</option>
-                        <option value="13">This is item 2</option>
-                        <option value="14">This is item 3</option>
-                    </optgroup>
-                </select>
-            </div>
-        </div>
-        <div class="row row-align" style="height:58px;">
-            <div class="col-md-6">
-                <p class="select-paragraph">Attendance </p>
-            </div>
-            <div class="col-md-6" style="margin-right:280px;">
-                <select class="program-select" style="font-size:20px;">
-                    <option value="12" selected="">Full-time</option>
-                    <option value="13">Part-time</option>
-                </select>
-            </div>
-        </div>
-        <div class="row row-align" style="height:58px;">
-            <div class="col-md-6">
-                <p class="select-paragraph">Region </p>
-            </div>
-            <div class="col-md-6" style="margin-right:280px;">
-                <select class="program-select" style="font-size:20px;">
-                    <option value="12" selected="">Jura</option>
-                    <option value="13">Geneva</option>
-                    <option value="14">Valais</option>
-                    <option value="">Ticino</option>
-                    <option value="">Graubunden</option>
-                    <option value="">Berne</option>
-                    <option value="">Central Switzerland</option>
-                </select>
-            </div>
-        </div>
-        <div class="row row-align" style="height:58px;">
-            <div class="col-md-6">
-                <p class="select-paragraph"> </p>
-            </div>
-            <div class="col-md-6" style="margin-right:280px;">
-                <button class="btn btn-default btn-search" type="button">Search <i class="glyphicon glyphicon-search"></i></button>
+<div class="container">
+    <div class="page-header">
+        <h2 class="text-center">My <strong>courses</strong>.</h2></div>
+    <h4 class="text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Course ID </th>
+                <th>Name </th>
+                <th>Startdate </th>
+                <th>Discipline </th>
+                <th>Degree </th>
+                <th>Attendance </th>
+                <th>Duration </th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            global $courses;
+
+            foreach($courses as $course): ?>
+            <tr>
+                <td><?php echo $course["ID_course"]; ?> </td>
+                <td><?php echo $course["name"]; ?> </td>
+                <td><?php echo $course["startdate"]; ?> </td>
+                <td><?php echo $course["discipline"]; ?> </td>
+                <td><?php echo $course["degree"];?></td>
+                <td><?php echo $course["attendance"]; ?> </td>
+                <td><?php echo $course["duration"]; ?> </td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-default" role="button" href="course-edit?id=<?php //echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
+                        <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php //echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-group" role="group">
+        <a class="btn btn-default" role="button" href="course-create"> <i class="fa fa-plus-square-o"></i></a>
+        <button class="btn btn-default" type="button"> <i class="fa fa-file-pdf-o"></i></button>
+        <button class="btn btn-default" type="button"> <i class="fa fa-envelope-o"></i></button>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="confirm-modal">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Deletion of a <strong>customer</strong>.</h4></div>
+                <div class="modal-body">
+                    <p>Do you want to delete a customer?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel </button><a class="btn btn-primary" role="button" href="#">Delete </a></div>
             </div>
         </div>
     </div>

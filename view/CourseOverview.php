@@ -34,17 +34,17 @@
             </thead>
             <tbody>
             <?php
-            //global $courses;
+            global $courses;
 
-            //foreach($courses as $course): ?>
+            foreach($courses as $course): ?>
                 <tr>
-                    <td><?php //echo $course["ID_course"]; ?> </td>
-                    <td><?php //echo $course["name"]; ?> </td>
-                    <td><?php //echo $course["startdate"]; ?> </td>
-                    <td><?php //echo $course["discipline"]; ?> </td>
-                    <td><?php //echo $course["degree"];?></td>
-                    <td><?php //echo $course["attendance"]; ?> </td>
-                    <td><?php //echo $course["duration"]; ?> </td>
+                    <td><?php echo $course["ID_course"]; ?> </td>
+                    <td><?php echo $course["name"]; ?> </td>
+                    <td><?php echo $course["startdate"]; ?> </td>
+                    <td><?php echo $course["discipline"]; ?> </td>
+                    <td><?php echo $course["degree"];?></td>
+                    <td><?php echo $course["attendance"]; ?> </td>
+                    <td><?php echo $course["duration"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
                             <a class="btn btn-default" role="button" href="course-edit?id=<?php //echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
@@ -52,7 +52,7 @@
                         </div>
                     </td>
                 </tr>
-            <?php //endforeach; ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
