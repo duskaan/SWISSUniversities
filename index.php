@@ -158,8 +158,8 @@ Router::route_auth("GET", "CourseOverview.php", $authFunction, function () {
     $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // TODO: extend the customers.php file to show the data
 
-    //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-    //require_once("view/CourseOverview.php");*/
+    //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*/
+    require_once("view/CourseOverview.php");
     layoutSetContent("CourseOverview.php");
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
