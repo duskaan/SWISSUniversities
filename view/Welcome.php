@@ -23,8 +23,8 @@ use dao\CourseDAO;
         $to = $_SESSION["universityLogin"]["email"];
         $subject = 'Registering for Swiss Universities';
         $message = 'Hi Thank you for registering at Swiss Universities ';
-        $headers = 'From: ina@stoilova.ch' . "\r\n" .
-            'Reply-To: ina@stoilova.ch' . "\r\n" .
+        $headers = 'From: tim.vandijke@gmx.ch' . "\r\n" .
+            'Reply-To: tim.vandijke@gmx.ch\'' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         if(mail($to, $subject, $message, $headers))
@@ -32,7 +32,10 @@ use dao\CourseDAO;
             echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
         }
         else {
-            echo ("<p>Message fail</p>");
+            echo ("<p> To </p>");echo $to;
+            echo ("<p> subject </p>" );  $subject;
+            echo ("<p> message </p>"); echo $message;
+            echo ("<p> headers</p>");echo $headers;
         }
            ?>
             </h3><br>
