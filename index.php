@@ -99,50 +99,53 @@ Router::route("GET", "/logout", function () {
 Router::route_auth("GET", "/", $authFunction, function () {
     layoutSetContent("view/index.php");
 });
+Router::route_auth("GET", "/index", $authFunction, function () {
+    layoutSetContent("view/index.php");
+});
 
-Router::route_auth("GET", "AboutUs.php", $authFunction, function () {
+Router::route_auth("GET", "AboutUs", $authFunction, function () {
     require_once("view/AboutUs.php");
     layoutSetContent("view/AboutUs.php");
 });
-Router::route_auth("GET", "Contact.php", $authFunction, function () {
+Router::route_auth("GET", "Contact", $authFunction, function () {
     require_once("view/Contact.php");
     layoutSetContent("view/Contact.php");
 });
-Router::route_auth("GET", "Disclaimer.php", $authFunction, function () {
+Router::route_auth("GET", "Disclaimer", $authFunction, function () {
     require_once("view/Disclaimer.php");
     layoutSetContent("view/Disclaimer.php");
 });
-Router::route_auth("GET", "EduProgram.php", $authFunction, function () {
+Router::route_auth("GET", "EduProgram", $authFunction, function () {
     require_once("view/EduProgram.php");
     layoutSetContent("view/EduProgram.php");
 });
-Router::route_auth("GET", "EduResults.php", $authFunction, function () {
+Router::route_auth("GET", "EduResults", $authFunction, function () {
     require_once("view/EduResults.php");
     layoutSetContent("view/EduResults.php");
 });
-Router::route_auth("GET", "Login.php", $authFunction, function () {
+Router::route_auth("GET", "Login", $authFunction, function () {
     require_once("view/Login.php");
     layoutSetContent("view/Login.php");
 });
-Router::route_auth("GET", "Privacy.php", $authFunction, function () {
+Router::route_auth("GET", "Privacy", $authFunction, function () {
     require_once("view/Privacy.php");
     layoutSetContent("view/Privacy.php");
 });
-Router::route_auth("GET", "Register.php", $authFunction, function () {
+Router::route_auth("GET", "Register", $authFunction, function () {
     require_once("view/Register.php");
 
     layoutSetContent("view/Register.php");
 });
-Router::route_auth("GET", "Terms.php", $authFunction, function () {
+Router::route_auth("GET", "Terms", $authFunction, function () {
     require_once("view/Terms.php");
     layoutSetContent("view/Terms.php");
 });
-Router::route_auth("GET", "TileTest.php", $authFunction, function () {
+Router::route_auth("GET", "TileTest", $authFunction, function () {
     require_once("view/TileTest.php");
     layoutSetContent("view/TileTest.php");
 });
 
-Router::route_auth("GET", "CourseOverview.php", $authFunction, function () {
+Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     require("database/database.php");
 /*
     $courseDAO = new CourseDAO();
@@ -160,7 +163,7 @@ Router::route_auth("GET", "CourseOverview.php", $authFunction, function () {
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*/
     require_once("view/CourseOverview.php");
-    layoutSetContent("CourseOverview.php");
+    layoutSetContent("view/CourseOverview.php");
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
     WECRMServiceImpl::getInstance()->editAgent($_POST["name"], $_POST["email"], $_POST["password"]);
@@ -168,7 +171,7 @@ Router::route_auth("POST", "/agent/edit", $authFunction, function () {
 });
 
 Router::route_auth("GET", "/course-create", $authFunction, function () {
-    layoutSetContent("courseEdit.php");
+    layoutSetContent("view/courseEdit.php");
 });
 
 Router::route_auth("GET", "/course-edit", $authFunction, function () {
@@ -180,7 +183,7 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     $stmt->execute();
     global $course;
     $course = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
-    layoutSetContent("courseEdit.php");
+    layoutSetContent("view/courseEdit.php");
 
     /*
 
@@ -202,7 +205,7 @@ Router::route_auth("GET", "/course-delete", $authFunction, function () {
     Router::redirect("/");
 });
 Router::route_auth("GET", "Welcome.php", $authFunction, function () {
-    layoutSetContent("Welcome.php");
+    layoutSetContent("view/Welcome.php");
 });
 Router::route_auth("POST", "/update", $authFunction, function () {
     $course = new Course();
@@ -223,7 +226,7 @@ Router::route_auth("POST", "/update", $authFunction, function () {
         $courseDAO->update($course);
         //WECRMServiceImpl::getInstance()->updateCustomer($course);
     }
-    Router::redirect("/CourseOverview.php");
+    Router::redirect("/CourseOverview");
 });
 
 try {

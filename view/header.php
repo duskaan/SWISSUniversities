@@ -40,11 +40,11 @@
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active" role="presentation"><a href="index.php">Home </a></li>
-                    <li role="presentation"><a href="Register.php">Register </a></li>
-                    <li role="presentation"><a href="Login.php">Login </a></li>
-                    <li role="presentation"><a href="CourseOverview.php">course Overview </a></li>
-                    <li role="presentation"><a href="EduProgram.php">Educational Programs</a></li>
+                    <li class="active" role="presentation"><a href="index">Home </a></li>
+                    <li role="presentation"><a href="Register">Register </a></li>
+                    <li role="presentation"><a href="Login">Login </a></li>
+                    <li role="presentation"><a href="CourseOverview">course Overview </a></li>
+                    <li role="presentation"><a href="EduProgram">Educational Programs</a></li>
                 </ul>
             </div>
         </div>
