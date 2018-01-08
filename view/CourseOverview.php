@@ -35,23 +35,24 @@
             <tbody>
             <?php
             global $courses;
-            foreach($courses as $course): ?>
+
+            //foreach($courses as $course): ?>
                 <tr>
-                    <td><?php echo $course["ID_course"]; ?> </td>
-                    <td><?php echo $course["name"]; ?> </td>
-                    <td><?php echo $course["startdate"]; ?> </td>
-                    <td><?php echo $course["discipline"]; ?> </td>
-                    <td><?php echo $course["degree"];?></td>
-                    <td><?php echo $course["attendance"]; ?> </td>
-                    <td><?php echo $course["duration"]; ?> </td>
+                    <td><?php //echo $course["ID_course"]; ?> </td>
+                    <td><?php //echo $course["name"]; ?> </td>
+                    <td><?php //echo $course["startdate"]; ?> </td>
+                    <td><?php //echo $course["discipline"]; ?> </td>
+                    <td><?php //echo $course["degree"];?></td>
+                    <td><?php //echo $course["attendance"]; ?> </td>
+                    <td><?php //echo $course["duration"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-default" role="button" href="course-edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
-                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                            <a class="btn btn-default" role="button" href="course-edit?id=<?php //echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
+                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php //echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php //endforeach; ?>
             </tbody>
         </table>
     </div>

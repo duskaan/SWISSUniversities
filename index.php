@@ -163,7 +163,7 @@ Router::route_auth("GET", "CourseOverview.php", $authFunction, function () {
     // TODO: extend the customers.php file to show the data
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-    require_once("view/CourseOverview.php");
+    //require_once("view/CourseOverview.php");
     layoutSetContent("CourseOverview.php");
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
@@ -208,7 +208,7 @@ Router::route_auth("GET", "/course-delete", $authFunction, function () {
 Router::route_auth("GET", "Welcome.php", $authFunction, function () {
     layoutSetContent("Welcome.php");
 });
-Router::route_auth("POST", "/course-update", $authFunction, function () {
+Router::route_auth("POST", "/update", $authFunction, function () {
     $course = new Course();
     $courseDAO = new CourseDAO();
     $course->setFKUniversity($_SESSION["universityLogin"]["id"]);
