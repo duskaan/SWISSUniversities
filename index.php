@@ -62,14 +62,7 @@ Router::route("POST", "/register", function () {
     Router::redirect("/Welcome.php");
 
 
-    $to = $university->getEmail();
-    $subject = 'Registering for Swiss Universities';
-    $message = 'Hi Thank you for registering at Swiss Universities ';
-    $headers = 'From: ina@stoilova.ch' . "\r\n" .
-        'Reply-To: ina@stoilova.ch' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
 
-    mail($to, $subject, $message, $headers);
 
 });
 

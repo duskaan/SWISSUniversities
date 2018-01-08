@@ -19,7 +19,23 @@ use dao\CourseDAO;
     <div class="page-header">
         <h2 class="text-center"><strong>Welcome <?php echo $_SESSION["universityLogin"]["organization"]; ?>.</strong></h2>
     </div>
-    <h3 class="text-center">A confirmation e-mail has been sent to your e-mail address.</h3><br>
+    <h3 class="text-center"><?php
+        $to = $_SESSION["universityLogin"]["email"];
+        $subject = 'Registering for Swiss Universities';
+        $message = 'Hi Thank you for registering at Swiss Universities ';
+        $headers = 'From: ina@stoilova.ch' . "\r\n" .
+            'Reply-To: ina@stoilova.ch' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        if(mail($to, $subject, $message, $headers))
+        {
+            echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
+        }
+        else {
+            echo ("<p>Message fail</p>");
+        }
+           ?>
+            </h3><br>
     <h4>Your information:</h4>
     <table class="table">
         <thead>
