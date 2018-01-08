@@ -11,6 +11,7 @@
         <p style="color:rgb(255,255,255);font-size:22px;padding-top:100px;font-weight:normal;">Decide about your Educational Future!</p>
     </div>
     <div class="container site-section" id="welcome">
+        <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/EduResults" method="post" >
         <h1>Choose your what? where? and how? preferences!</h1>
         <p style="padding-bottom:80px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
             sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
@@ -20,9 +21,9 @@
                     <p class="select-paragraph">Institute </p>
                 </div>
                 <div class="col-md-6" style="margin-right:280px;">
-                    <select class="program-select" style="font-size:20px;">
-                        <option value="12" selected="">University of Applied Science</option>
-                        <option value="13">University</option>
+                    <select class="program-select" style="font-size:20px;" name="institute" required>
+                        <option value="University of Applied Science" selected="">University of Applied Science</option>
+                        <option value="University">University</option>
                     </select>
                 </div>
             </div>
@@ -31,9 +32,11 @@
                     <p class="select-paragraph">Degree </p>
                 </div>
                 <div class="col-md-6" style="margin-right:280px;">
-                    <select class="program-select" style="font-size:20px;">
-                        <option value="12" selected="">Bachelor</option>
-                        <option value="13">Master</option>
+                    <select class="program-select" style="font-size:20px;" name="degree" required>
+                        <option value="MAS" selected="">MAS</option>
+                        <option value="MSc">MSc</option>
+                        <option value="DAS">DAS</option>
+                        <option value="MAS">MAS</option>
                     </select>
                 </div>
             </div>
@@ -42,11 +45,11 @@
                     <p class="select-paragraph">Discipline </p>
                 </div>
                 <div class="col-md-6" style="margin-right:280px;">
-                    <select class="program-select" style="font-size:20px;">
+                    <select class="program-select" style="font-size:20px;" name="discipline" required>
                         <optgroup label="This is a group">
-                            <option value="12" selected="">This is item 1</option>
-                            <option value="13">This is item 2</option>
-                            <option value="14">This is item 3</option>
+                            <option value="Engineering" selected="">Engineering</option>
+                            <option value="Business">Business</option>
+                            <option value="Social">Social</option>
                         </optgroup>
                     </select>
                 </div>
@@ -55,10 +58,10 @@
                 <div class="col-md-6">
                     <p class="select-paragraph">Attendance </p>
                 </div>
-                <div class="col-md-6" style="margin-right:280px;">
-                    <select class="program-select" style="font-size:20px;">
-                        <option value="12" selected="">Full-time</option>
-                        <option value="13">Part-time</option>
+                <div class="col-md-6" style="margin-right:280px;" >
+                    <select class="program-select" style="font-size:20px;" name="attendance" required>
+                        <option value="Full-time" selected="">Full-time</option>
+                        <option value="Part-time">Part-time</option>
                     </select>
                 </div>
             </div>
@@ -67,14 +70,13 @@
                     <p class="select-paragraph">Region </p>
                 </div>
                 <div class="col-md-6" style="margin-right:280px;">
-                    <select class="program-select" style="font-size:20px;">
-                        <option value="12" selected="">Jura</option>
-                        <option value="13">Geneva</option>
-                        <option value="14">Valais</option>
-                        <option value="">Ticino</option>
-                        <option value="">Graubunden</option>
-                        <option value="">Berne</option>
-                        <option value="">Central Switzerland</option>
+                    <select class="program-select" style="font-size:20px;" name="region" required>
+                        <option value="Northwestern" selected="">Northwestern</option>
+                        <option value="Eastern">Eastern</option>
+                        <option value="Espace Mittelland">Espace Mittelland</option>
+                        <option value="Lake Geneva Region">Lake Geneva Region</option>
+                        <option value="Ticino">Ticino</option>
+                        <option value="Zurich">Zurich</option>
                     </select>
                 </div>
             </div>
@@ -83,8 +85,9 @@
                     <p class="select-paragraph"> </p>
                 </div>
                 <div class="col-md-6" style="margin-right:280px;">
-                    <button class="btn btn-default btn-search" type="button">Search <i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-default btn-search" type="submit">Search <i class="glyphicon glyphicon-search"></i></button>
                 </div>
             </div>
         </div>
+        </form>
     </div>

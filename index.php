@@ -85,10 +85,27 @@ Router::route("POST", "/login", function () {
             Router::redirect("/Welcome");
         }
     } else {
-        Router::redirect("/index.php");
+        Router::redirect("/index");
     }
+});
+Router::route_auth("POST", "EduResults", $authFunction, function () {
+    $filter=new \domain\filteredCourse();
+    $filter->setDiscipline($_POST["discipline"]);
+    $filter->setDegree($_POST["degree"]);
+    $filter->setAttendance($_POST["attendance"]);
+    $filter->setRegion($_POST["region"]);
+    $filter->setInstitute($_POST["institute"]);
+    global $filteredCourses;
+    $courseDAO = new CourseDAO();
+    $filteredCourses= $courseDAO->findByFilter($filter);
+    if (!empty($filteredCourses)){ //here it not is empty
 
-
+    }else{
+        throw new HTTPException;
+    }
+    require_once("view/EduResults.php");
+    layoutSetContent("view/EduResults.php");
+    //Router::redirect("/EduResults");
 });
 
 Router::route("GET", "/logout", function () {
@@ -119,10 +136,11 @@ Router::route_auth("GET", "EduProgram", $authFunction, function () {
     require_once("view/EduProgram.php");
     layoutSetContent("view/EduProgram.php");
 });
+/*
 Router::route_auth("GET", "EduResults", $authFunction, function () {
     require_once("view/EduResults.php");
     layoutSetContent("view/EduResults.php");
-});
+});*/
 Router::route_auth("GET", "Login", $authFunction, function () {
     require_once("view/Login.php");
     layoutSetContent("view/Login.php");
@@ -144,6 +162,7 @@ Router::route_auth("GET", "TileTest", $authFunction, function () {
     require_once("view/TileTest.php");
     layoutSetContent("view/TileTest.php");
 });
+
 
 Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     //require("database/database.php");
@@ -224,6 +243,8 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setDegree($_POST["degree"]);
     $course->setAttendance($_POST["attendance"]);
     $course->setDuration($_POST["duration"]);
+    $course->setLanguage($_POST["language"]);
+    $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
         //WECRMServiceImpl::getInstance()->createCustomer($course);

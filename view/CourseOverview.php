@@ -30,6 +30,8 @@
                 <th>Degree </th>
                 <th>Attendance </th>
                 <th>Duration </th>
+                <th>Language </th>
+                <th>Link </th>
             </tr>
             </thead>
             <tbody>
@@ -45,6 +47,8 @@
                     <td><?php echo $course["degree"];?></td>
                     <td><?php echo $course["attendance"]; ?> </td>
                     <td><?php echo $course["duration"]; ?> </td>
+                    <td><?php echo $course["language"]; ?> </td>
+                    <td><?php echo $course["link"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
                             <a class="btn btn-default" role="button" href="course-edit?id=<?php //echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
