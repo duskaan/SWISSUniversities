@@ -146,7 +146,7 @@ Router::route_auth("GET", "TileTest", $authFunction, function () {
 });
 
 Router::route_auth("GET", "CourseOverview", $authFunction, function () {
-    //require("database/database.php");
+    require("database/database.php");
     /*
     $courseDAO = new CourseDAO();
     global $courses;
