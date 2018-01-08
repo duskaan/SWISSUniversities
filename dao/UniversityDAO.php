@@ -18,7 +18,9 @@ class UniversityDAO extends BasicDAO {
 	 * @ReturnType Agent
 	 */
 	public function create(University $university) {
-        $stmt = $this->pdoInstance->prepare('
+        session_regenerate_id();
+
+	    $stmt = $this->pdoInstance->prepare('
         INSERT INTO university ("ID_university", organization,region,description,institute, email, password)
           VALUES(:ID, :organization,:region,:description,:institute,:email, :password);');
 

@@ -32,7 +32,9 @@ Router::route("GET", "/login", function () {
 });
 
 Router::route("GET", "/register", function () {
+    session_destroy();
     require_once("view/Register.php");
+    session_create_id();
 });
 
 Router::route("POST", "/register", function () {
@@ -135,6 +137,7 @@ Router::route_auth("GET", "Privacy.php", $authFunction, function () {
 });
 Router::route_auth("GET", "Register.php", $authFunction, function () {
     require_once("view/Register.php");
+
     layoutSetContent("view/Register.php");
 });
 Router::route_auth("GET", "Terms.php", $authFunction, function () {
