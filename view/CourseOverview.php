@@ -34,7 +34,7 @@
             </thead>
             <tbody>
             <?php
-            global $courses;
+            //global $courses;
 
             //foreach($courses as $course): ?>
                 <tr>
