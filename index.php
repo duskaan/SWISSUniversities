@@ -162,10 +162,12 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     // TODO: extend the customers.php file to show the data
 
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*/
-    require_once("view/CourseOverview.php");
+    //require_once("view/CourseOverview.php");
    // layoutSetContent("view/CourseOverview.php");
-    require_once("view/EduResults.php");
-    layoutSetContent("view/EduResults.php");
+    //require_once("view/EduResults.php");
+    //layoutSetContent("view/EduResults.php   ");
+    require_once("view/customers.php");
+    layoutSetContent("view/customers.php");
 
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {

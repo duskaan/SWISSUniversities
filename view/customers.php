@@ -22,21 +22,21 @@
             </thead>
             <tbody>
             <?php
-            global $customers;
-            foreach($customers as $customer): ?>
+            //global $customers;
+           // foreach($customers as $customer): ?>
             <tr>
-                <td><?php echo $customer->getId(); ?> </td>
-                <td><?php echo $customer->getName(); ?></td>
-                <td><?php echo $customer->getEmail(); ?> </td>
-                <td><?php echo $customer->getMobile(); ?> </td>
+                <td><?php //echo $customer->getId(); ?> </td>
+                <td><?php// echo $customer->getName(); ?></td>
+                <td><?php //echo $customer->getEmail(); ?> </td>
+                <td><?php //echo $customer->getMobile(); ?> </td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
-                        <a class="btn btn-default" role="button" href="customer/edit?id=<?php echo $customer->getId(); ?>"> <i class="fa fa-edit"></i></a>
-                        <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="customer/delete?id=<?php echo $customer->getId(); ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                        <a class="btn btn-default" role="button" href="customer/edit?id=<?php //echo $customer->getId(); ?>"> <i class="fa fa-edit"></i></a>
+                        <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="customer/delete?id=<?php// echo $customer->getId(); ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                     </div>
                 </td>
             </tr>
-            <?php endforeach; ?>
+            <?php //endforeach; ?>
             </tbody>
         </table>
     </div>
