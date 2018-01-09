@@ -110,10 +110,10 @@ Router::route("GET", "/logout", function () {
     session_destroy();
     Router::redirect("/login");
 });
-
+/*
 Router::route_auth("GET", "/", $authFunction, function () {
     layoutSetContent("view/index.php");
-});
+});*/
 Router::route_auth("GET", "/index", $authFunction, function () {
     require('sendgrid-php\sendgrid-php.php');
 
