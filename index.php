@@ -113,27 +113,12 @@ Router::route("GET", "/logout", function () {
     Router::redirect("/login");
 });
 
-Router::route_auth("GET", "/", $authFunction, function () {
+Router::route("GET", "/", function() {
     layoutSetContent("view/index.php");
 });
 
-Router::route_auth("GET", "/index", $authFunction, function () {
-    /*require('sendgrid-php\sendgrid-php.php');
+Router::route("GET", "/index", function () {
 
-    $from = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
-    $subject = "Sending with SendGrid is Fun";
-    $to = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
-    $content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
-    $mail = new SendGrid\Mail($from, $subject, $to, $content);
-   $apiKey = getenv("apiKey");
-   //$apiKey = "";
-    $sg = new \SendGrid($apiKey);
-    $response = $sg->client->mail()->send()->post($mail);
-    echo $response->statusCode();
-    print_r($response->headers());
-    echo $response->body();
-
-*/
     layoutSetContent("view/index.php");
 });
 
