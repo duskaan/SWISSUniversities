@@ -14,6 +14,7 @@ use domain\Course;
 use domain\University;
 use dao\CourseDAO;
 use dao\UniversityDAO;
+use domain\filteredCourse;
 use database\Database;
 
 
@@ -23,8 +24,8 @@ $authFunction = function () {
     if (isset($_SESSION["universityLogin"])) {
         return true;
     }
-    //router::redirect("/");
-    return true;
+    router::redirect("/");
+
 };
 
 Router::route("GET", "/login", function () {
@@ -62,8 +63,6 @@ Router::route("POST", "/register", function () {
     Router::redirect("/Welcome");
 
 
-
-
 });
 
 Router::route("POST", "/login", function () {
@@ -80,8 +79,7 @@ Router::route("POST", "/login", function () {
             if (password_needs_rehash($university->getPassword(), PASSWORD_DEFAULT)) {
                 $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                 $universityDAO->update($university);
-            }
-           ;
+            };
             Router::redirect("/Welcome");
         }
     } else {
@@ -89,7 +87,7 @@ Router::route("POST", "/login", function () {
     }
 });
 Router::route_auth("POST", "EduResults", $authFunction, function () {
-    $filter=new \domain\filteredCourse();
+    $filter = new filteredCourse();
     $filter->setDiscipline($_POST["discipline"]);
     $filter->setDegree($_POST["degree"]);
     $filter->setAttendance($_POST["attendance"]);
@@ -97,10 +95,10 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
     $filter->setInstitute($_POST["institute"]);
     global $filteredCourses;
     $courseDAO = new CourseDAO();
-    $filteredCourses= $courseDAO->findByFilter($filter);
-    if (!empty($filteredCourses)){ //here it not is empty
+    $filteredCourses = $courseDAO->findByFilter($filter);
+    if (!empty($filteredCourses)) { //here it not is empty
 
-    }else{
+    } else {
         throw new HTTPException;
     }
     require_once("view/EduResults.php");
@@ -117,12 +115,32 @@ Router::route_auth("GET", "/", $authFunction, function () {
     layoutSetContent("view/index.php");
 });
 Router::route_auth("GET", "/index", $authFunction, function () {
+    require('sendgrid-php\sendgrid-php.php');
+
+    $from = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
+    $subject = "Sending with SendGrid is Fun";
+    $to = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
+    $content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
+    $mail = new SendGrid\Mail($from, $subject, $to, $content);
+   //$apiKey = getenv("apiKey");
+   $apiKey = "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";
+    $sg = new \SendGrid($apiKey);
+    $response = $sg->client->mail()->send()->post($mail);
+    echo $response->statusCode();
+    print_r($response->headers());
+    echo $response->body();
+return true;
+
     layoutSetContent("view/index.php");
 });
 
 Router::route_auth("GET", "AboutUs", $authFunction, function () {
     require_once("view/AboutUs.php");
     layoutSetContent("view/AboutUs.php");
+});
+Router::route_auth("GET", "ForgotPassword", $authFunction, function () {
+    require_once("view/ForgotPasswordSet.php");
+    layoutSetContent("view/ForgotPasswordSet.php");
 });
 Router::route_auth("GET", "Contact", $authFunction, function () {
     require_once("view/Contact.php");
@@ -136,11 +154,11 @@ Router::route_auth("GET", "EduProgram", $authFunction, function () {
     require_once("view/EduProgram.php");
     layoutSetContent("view/EduProgram.php");
 });
-/*
+
 Router::route_auth("GET", "EduResults", $authFunction, function () {
-    require_once("view/EduResults.php");
-    layoutSetContent("view/EduResults.php");
-});*/
+    require_once("view/EduProgram.php");
+    layoutSetContent("view/EduProgram.php");
+});
 Router::route_auth("GET", "Login", $authFunction, function () {
     require_once("view/Login.php");
     layoutSetContent("view/Login.php");
@@ -161,6 +179,40 @@ Router::route_auth("GET", "Terms", $authFunction, function () {
 Router::route_auth("GET", "TileTest", $authFunction, function () {
     require_once("view/TileTest.php");
     layoutSetContent("view/TileTest.php");
+});
+Router::route_auth("POST", "forgotPassword-sendMail", $authFunction, function () {
+    $university= new University();
+    $universityDAO = new UniversityDAO();
+    $university  = $universityDAO->findByEmail($_POST["email"]);
+
+    $from = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
+    $subject = "ForgotPassword";
+    $to = new SendGrid\Email("Example User", "tim.vandijke@oiawjd.ciuh");
+    $content = new SendGrid\Content("text/plain", "Please use this link to reset your password "
+    ."https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id".$university->getIDuniversity());
+    $mail = new SendGrid\Mail($from, $subject, $to, $content);
+    //$apiKey = getenv('SENDGRID_API_KEY');
+    $apiKey = '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';
+    $sg = new \SendGrid($apiKey);
+    $response = $sg->client->mail()->send()->post($mail);
+    echo $response->statusCode();
+    print_r($response->headers());
+    echo $response->body();
+    return true;
+    layoutSetContent("view/TileTest.php");
+});
+Router::route_auth("GET", "/ForgotPasswordSet", $authFunction, function () {
+    $universityID = $_GET["id"];
+
+    $pdoInstance = Database::connect();
+    $stmt = $pdoInstance->prepare('
+            SELECT * FROM university WHERE "ID_university" = :id;');
+    $stmt->bindValue(':id', $universityID);
+    $stmt->execute();
+    global $university;
+    $university = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    require_once("view/ForgotPasswordSet.php");
+    layoutSetContent("view/ForgotPasswordSet.php");
 });
 
 
@@ -185,7 +237,7 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     layoutSetContent("view/CourseOverview.php");
     //require_once("view/EduResults.php");
     //layoutSetContent("view/EduResults.php   ");
-   // require_once("view/customers.php");
+    // require_once("view/customers.php");
     //layoutSetContent("view/customers.php");
 
 });

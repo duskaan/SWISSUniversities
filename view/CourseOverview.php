@@ -51,8 +51,8 @@
                     <td><?php echo $course["link"]; ?> </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-default" role="button" href="course-edit?id=<?php //echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
-                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php //echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
+                            <a class="btn btn-default" role="button" href="course-edit?id=<?php echo $course["ID_course"]; ?>"> <i class="fa fa-edit"></i></a>
+                            <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </td>
                 </tr>

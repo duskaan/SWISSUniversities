@@ -1,4 +1,10 @@
-
+<?php
+// using SendGrid's PHP Library
+// https://github.com/sendgrid/sendgrid-php
+// If you are using Composer (recommended)
+//require 'vendor/autoload.php';
+// If you are not using Composer
+?>
     <div style="background-color:rgba(19,116,177,0.35);">
         <div class="container">
             <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
