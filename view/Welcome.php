@@ -6,6 +6,7 @@
  * Time: 12:47
  */
 use dao\CourseDAO;
+use service\EmailServiceClient;
 ?>
 <div style="background-color:rgba(19,116,177,0.35);">
         <div class="container">
@@ -27,7 +28,7 @@ use dao\CourseDAO;
             'Reply-To: tim.vandijke@gmx.ch\'' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        if(mail($to, $subject, $message, $headers))
+        if(EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","test","another test as a body"))
         {
             echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
         }

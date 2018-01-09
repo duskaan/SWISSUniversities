@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: andreas.martin
@@ -35,7 +36,6 @@ Router::route("GET", "/login", function () {
 });
 
 Router::route("GET", "/register", function () {
-    session_destroy();
     require_once("view/Register.php");
     session_create_id();
 });
@@ -101,7 +101,7 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
     if (!empty($filteredCourses)) { //here it not is empty
 
     } else {
-        throw new HTTPException;
+        router::redirect("/EduResults");
     }
     require_once("view/EduResults.php");
     layoutSetContent("view/EduResults.php");
@@ -168,7 +168,7 @@ Router::route_auth("GET", "TileTest", $authFunction, function () {
     require_once("view/TileTest.php");
     layoutSetContent("view/TileTest.php");
 });
-Router::route_auth("POST", "forgotPassword-sendMail", $authFunction, function () {
+Router::route_auth("POST", "ForgotPasswordGet", $authFunction, function () {
     $university= new University();
     $universityDAO = new UniversityDAO();
     $university  = $universityDAO->findByEmail($_POST["email"]);
@@ -178,16 +178,13 @@ Router::route_auth("POST", "forgotPassword-sendMail", $authFunction, function ()
     $to = new SendGrid\Email("Example User", "tim.vandijke@oiawjd.ciuh");
     $content = new SendGrid\Content("text/plain", "Please use this link to reset your password "
     ."https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id".$university->getIDuniversity());
-    $mail = new SendGrid\Mail($from, $subject, $to, $content);
+    //$mail = new SendGrid\Mail($from, $subject, $to, $content);
     //$apiKey = getenv('SENDGRID_API_KEY');
-    $apiKey = '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';
-    $sg = new \SendGrid($apiKey);
-    $response = $sg->client->mail()->send()->post($mail);
-    echo $response->statusCode();
-    print_r($response->headers());
-    echo $response->body();
-    return true;
-    layoutSetContent("view/TileTest.php");
+
+
+    EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","test","another test as a body");
+
+    layoutSetContent("view/ForgotPasswordSet.php");
 });
 Router::route_auth("GET", "/ForgotPasswordSet", $authFunction, function () {
     $universityID = $_GET["id"];
@@ -208,8 +205,11 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     //require("database/database.php");
 
     $courseDAO = new CourseDAO();
+    $id= $_SESSION["universityLogin"]["id"];
+    if(is_null($id)){
+        router::redirect("/");
+    }
     global $courses;
-
     $courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
     //$pdoInstance = Database::connect();
     /** TODO: create a prepared SQL statement to retrieve all customers */
@@ -219,14 +219,10 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     $stmt->execute();
     $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // TODO: extend the customers.php file to show the data
-
-    //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*/
+    */
+    //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*//*
     require_once("view/CourseOverview.php");
     layoutSetContent("view/CourseOverview.php");
-    //require_once("view/EduResults.php");
-    //layoutSetContent("view/EduResults.php   ");
-    // require_once("view/customers.php");
-    //layoutSetContent("view/customers.php");
 
 });
 Router::route_auth("POST", "/agent/edit", $authFunction, function () {
@@ -256,7 +252,7 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     $courseDAO = new CourseDAO();
     $course = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
     $course = WECRMServiceImpl::getInstance()->readCustomer($id);
-    layoutSetContent("courseEdit.php");*/
+    layoutSetContent("courseEdit.php");*/ /*
 });
 
 Router::route_auth("GET", "/course-delete", $authFunction, function () {

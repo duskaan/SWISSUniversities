@@ -135,8 +135,6 @@ class CourseDAO extends BasicDAO {
         $result=$stmt->fetchAll(\PDO::FETCH_ASSOC);
         if (!empty($result)){
             return $result;
-        }else{
-            throw new HTTPException;
         }
         //return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
 

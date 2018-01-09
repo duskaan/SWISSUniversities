@@ -17,7 +17,7 @@
 </div>
 <div class="form-container register-dark" style="height:1000px">
     <div class="image-holder"></div>
-    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/forgotPassword-sendMail" method="post" style="background-color:rgb(30,40,51);">
+    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/forgotPasswordGet" method="post" style="background-color:rgb(30,40,51);">
         <h2 class="text-center" style="color:rgb(255,255,255);"><strong>Create</strong> new Password.</h2>
             <div class="form-group">
                 <input class="form-control" type="email" name="email" placeholder="Email" required>
