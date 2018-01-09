@@ -26,8 +26,8 @@ $authFunction = function () {
     if (isset($_SESSION["universityLogin"])) {
         return true;
     }
-    router::redirect("/");
-
+    //router::redirect("/");
+    return true;
 };
 
 Router::route("GET", "/login", function () {
@@ -113,11 +113,11 @@ Router::route("GET", "/logout", function () {
     Router::redirect("/login");
 });
 
-Router::route("GET", "/", function() {
+Router::route_auth("GET", "/",$authFunction, function() {
     layoutSetContent("view/index.php");
 });
 
-Router::route("GET", "/index", function () {
+Router::route_auth("GET", "/index",$authFunction, function () {
 
     layoutSetContent("view/index.php");
 });
