@@ -123,15 +123,15 @@ Router::route_auth("GET", "/index", $authFunction, function () {
     $to = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
     $content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
     $mail = new SendGrid\Mail($from, $subject, $to, $content);
-   //$apiKey = getenv("apiKey");
-   $apiKey = "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";
+   $apiKey = getenv("apiKey");
+   //$apiKey = "";
     $sg = new \SendGrid($apiKey);
     $response = $sg->client->mail()->send()->post($mail);
     echo $response->statusCode();
     print_r($response->headers());
     echo $response->body();
 
-
+    
     layoutSetContent("view/index.php");
 });
 
