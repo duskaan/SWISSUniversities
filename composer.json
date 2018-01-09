@@ -1,0 +1,13 @@
+{
+  "name": "swissuniversities",
+  "description": "Webengineering Project",
+  "authors": [
+    {
+      "name": "Tim van Dijke",
+      "email": "tim.vandijke@gmx.ch"
+    }
+  ],
+  "require": {
+    "php": "~7.1.0"
+  }
+}

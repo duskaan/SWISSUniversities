@@ -16,6 +16,8 @@ use dao\CourseDAO;
 use dao\UniversityDAO;
 use domain\filteredCourse;
 use database\Database;
+use service\EmailServiceClient;
+use service\PDFServiceClient;
 
 
 session_start();
@@ -116,7 +118,7 @@ Router::route_auth("GET", "/", $authFunction, function () {
 });
 
 Router::route_auth("GET", "/index", $authFunction, function () {
-    require('sendgrid-php\sendgrid-php.php');
+    /*require('sendgrid-php\sendgrid-php.php');
 
     $from = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
     $subject = "Sending with SendGrid is Fun";
@@ -131,7 +133,7 @@ Router::route_auth("GET", "/index", $authFunction, function () {
     print_r($response->headers());
     echo $response->body();
 
-    
+*/
     layoutSetContent("view/index.php");
 });
 
@@ -307,7 +309,14 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     }
     Router::redirect("/CourseOverview");
 });
+Router::route_auth("GET", "/course/email", $authFunction, function () {
+    EmailController::sendMeMyCustomers();
+    Router::redirect("/");
+});
 
+Router::route_auth("GET", "/course/pdf", $authFunction, function () {
+    PDFController::generatePDFCustomers();
+});
 try {
     Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO']);
 } catch (HTTPException $exception) {

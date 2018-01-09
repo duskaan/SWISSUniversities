@@ -32,5 +32,17 @@ class Config
             self::init();
         return self::$config["pdo"][$key];
 }
+    public static function emailConfig($key)
+    {
+        if (empty(self::$config))
+            self::init();
+        return self::$config["email"][$key];
+    }
 
+    public static function pdfConfig($key)
+    {
+        if (empty(self::$config))
+            self::init();
+        return self::$config["pdf"][$key];
+    }
 }
