@@ -45,6 +45,7 @@
                     <li role="presentation"><a href="Login">Login </a></li>
                     <li role="presentation"><a href="CourseOverview">course Overview </a></li>
                     <li role="presentation"><a href="EduProgram">Educational Programs</a></li>
+                    <li role="presentation"><a href="logout">Logout </a></li>
                 </ul>
             </div>
         </div>

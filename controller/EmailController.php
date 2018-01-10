@@ -22,11 +22,9 @@ class EmailController
         $content = PDFController::generatePDFCustomers($course);
 
         $universityDao = new UniversityDAO();
-        $email = $universityDao->findByID()->getEmail();
+        $email = $universityDao->findByID($course->getFKUniversity())->getEmail();
 
-
-        $emailView = new TemplateView("customerListEmail.php");
-        $emailView->customers = (new CustomerServiceImpl())->findAllCustomer();
         return EmailServiceClient::sendEmail($email, "Invoice for new Course", $content);
+        //return EmailServiceClient::sendEmail($email, "Invoice for new Course", "teset");
     }
 }

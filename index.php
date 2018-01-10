@@ -117,6 +117,7 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
 
 Router::route("GET", "/logout", function () {
     session_destroy();
+    setcookie("token","",time() - 3600, "/");
     Router::redirect("/login");
 });
 
@@ -178,24 +179,22 @@ Router::route_auth("GET", "TileTest", $authFunction, function () {
     //require_once("view/TileTest.php");
     layoutSetContent("view/TileTest.php");
 });
-Router::route_auth("POST", "ForgotPasswordGet", $authFunction, function () {
-    $university= new University();
+
+Router::route("GET", "ForgotPasswordGet", function () {
+    layoutSetContent("ForgotPasswordGet.php");
+});
+
+Router::route("POST", "ForgotPasswordGet", function () {
     $universityDAO = new UniversityDAO();
     $university  = $universityDAO->findByEmail($_POST["email"]);
-
-    $from = new SendGrid\Email("Example User", "tim.vandijke@gmx.ch");
     $subject = "ForgotPassword";
-    $to = new SendGrid\Email("Example User", "tim.vandijke@oiawjd.ciuh");
-    $content = new SendGrid\Content("text/plain", "Please use this link to reset your password "
-    ."https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id".$university->getIDuniversity());
-    //$mail = new SendGrid\Mail($from, $subject, $to, $content);
-    //$apiKey = getenv('SENDGRID_API_KEY');
 
-
-    EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","test","another test as a body");
-
-    layoutSetContent("view/ForgotPasswordSet.php");
+    $content = "Hi ".$university->getOrganization()."Please use this link to reset your password "
+    ."https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id".$university->getIDuniversity();
+    EmailServiceClient::sendEmail("tim.vandijke@gmx.ch",$subject,$content);
+    Router::redirect("/index");
 });
+
 Router::route_auth("GET", "/ForgotPasswordSet", $authFunction, function () {
     $universityID = $_GET["id"];
 
@@ -293,9 +292,10 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
-       PDFController::generatePDFCustomers($course);
-       Router::redirect("/customerListPDF");
-        //EmailController::sendInvoice($course);
+       //PDFController::generatePDFCustomers($course);
+
+        EmailController::sendInvoice($course);
+        //Router::redirect("/customerListPDF");
         //WECRMServiceImpl::getInstance()->createCustomer($course);
     } else {
         $courseDAO->update($course);

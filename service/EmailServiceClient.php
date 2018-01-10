@@ -10,14 +10,20 @@ namespace service;
 
 use config\Config;
 
+
 class EmailServiceClient
 {
 
     public static function sendEmail($toEmail, $subject, $htmlData){
+
         $jsonObj = self::createEmailJSONObj();
         $jsonObj->personalizations[0]->to[0]->email = $toEmail;
+        //$jsonObj->personalizations[0]->to[0]->email = 'test@example.com';
         $jsonObj->subject = $subject;
+        //$jsonObj->subject = "Sending with SendGrid is Fun";
+
         $jsonObj->content[0]->value = $htmlData;
+        //$jsonObj->content[0]->value = "and easy to do anywhere, even with PHP";
 
         $options = ["http" => [
             "method" => "POST",
@@ -44,8 +50,8 @@ class EmailServiceClient
             }
           ],
           "from": {
-            "email": "noreply@fhnw.ch",
-            "name": "WE-CRM"
+            "email": "tim.vandijke@gmx.ch",
+            "name": "Swiss University Portal"
           },
           "subject": "subject",
           "content": [
@@ -56,4 +62,20 @@ class EmailServiceClient
           ]
         }');
     }
+public static function sendEcampleMail(){
+    // If you are not using Composer
+    /*require("C:\xampp\htdocs\SWISSUniversities\sendgrid-php/sendgrid-php.php");
+    $from = new SendGrid\Email("Example User", "test@example.com");
+    $subject = "Sending with SendGrid is Fun";
+    $to = new SendGrid\Email("Example User", "test@example.com");
+    $content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
+    $mail = new SendGrid\Mail($from, $subject, $to, $content);
+    $apiKey = getenv('SENDGRID_API_KEY');
+    $sg = new SendGrid($apiKey);
+    $response = $sg->client->mail()->send()->post($mail);
+    echo $response->statusCode();
+    print_r($response->headers());
+    echo $response->body();*/
+}
+
 }
