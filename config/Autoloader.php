@@ -23,4 +23,4 @@ class Autoloader
     }
 }
 
-spl_autoload_register('config.env\Autoloader::autoload');
+spl_autoload_register('config\Autoloader::autoload');

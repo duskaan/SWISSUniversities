@@ -12,7 +12,7 @@ use http\HTTPException;
 
 class Config
 {
-    protected static $iniFile = "config.env/config.env";
+    protected static $iniFile = "config/config";
     protected static $config = [];
 
     public static function init()
