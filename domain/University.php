@@ -69,7 +69,7 @@ class University {
      * @ReturnType String
      */
     public function getOrganization() {
-        return $this->name;
+        return $this->organization;
     }
     /**
      * @access public
@@ -79,7 +79,7 @@ class University {
      * @ReturnType void
      */
     public function setOrganization($name) {
-        $this->name = $name;
+        $this->organization = $name;
     }
     /**
      * @access public

@@ -58,15 +58,15 @@ class UniversityDAO extends BasicDAO {
 	 * @ParamType agent Agent
 	 * @ReturnType Agent
 	 */
-	public function update(Agent $agent) {
+	public function update(University $university) {
         $stmt = $this->pdoInstance->prepare('
-                UPDATE agent SET name=:name, email=:email, password=:password WHERE id = :id;');
-        $stmt->bindValue(':id', $agent->getId());
-        $stmt->bindValue(':name', $agent->getName());
-        $stmt->bindValue(':email', $agent->getEmail());
-        $stmt->bindValue(':password', $agent->getPassword());
+                UPDATE university SET organization=:org,region=:region, email=:email, password=:password WHERE "ID_university"= :id;');
+        $stmt->bindValue(':org', $university->getOrganization());
+        $stmt->bindValue(':id', $university->getIDuniversity());
+        $stmt->bindValue(':region', $university->getRegion());
+        $stmt->bindValue(':email', $university->getEmail());
+        $stmt->bindValue(':password', $university->getPassword());
         $stmt->execute();
-        return $this->read($agent->getId());
 	}
 
 	/**

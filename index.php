@@ -45,10 +45,10 @@ Router::route("GET", "/register", function () {
 Router::route("POST", "/register", function () {
     /* TODO: refactor and use WECRMServiceImpl::getInstance()->editAgent($_POST["name"],$_POST["email"], $_POST["password"]); */
     //todo use university
-    if($_POST["password"]==$_POST["password-repeat"]){
+    if ($_POST["password"] == $_POST["password-repeat"]) {
         $university = new University();
         $universityDAO = new UniversityDAO();
-        if(is_null($universityDAO->findByEmail($_POST["email"]))){
+        if (is_null($universityDAO->findByEmail($_POST["email"]))) {
             $university->setOrganization($_POST["organization"]);
             $university->setRegion($_POST["region"]);
             $university->setInstitute($_POST["institute"]);
@@ -66,10 +66,10 @@ Router::route("POST", "/register", function () {
             $_SESSION["universityLogin"]["description"] = $university->getDescription();
             $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
             Router::redirect("/Welcome");
-        }else{
+        } else {
             Router::redirect("/login");
         }
-    }else{
+    } else {
         Router::redirect("/register");
     }
 });
@@ -117,15 +117,15 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
 
 Router::route("GET", "/logout", function () {
     session_destroy();
-    setcookie("token","",time() - 3600, "/");
+    setcookie("token", "", time() - 3600, "/");
     Router::redirect("/login");
 });
 
-Router::route_auth("GET", "/",$authFunction, function() {
+Router::route_auth("GET", "/", $authFunction, function () {
     layoutSetContent("view/index.php");
 });
 
-Router::route_auth("GET", "/index",$authFunction, function () {
+Router::route_auth("GET", "/index", $authFunction, function () {
     layoutSetContent("view/index.php");
 });
 
@@ -186,16 +186,16 @@ Router::route("GET", "ForgotPasswordGet", function () {
 
 Router::route("POST", "ForgotPasswordGet", function () {
     $universityDAO = new UniversityDAO();
-    $university  = $universityDAO->findByEmail($_POST["email"]);
+    $university = $universityDAO->findByEmail($_POST["email"]);
     $subject = "ForgotPassword";
 
-    $content = "Hi ".$university->getOrganization()."Please use this link to reset your password "
-    ."https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id".$university->getIDuniversity();
-    EmailServiceClient::sendEmail("tim.vandijke@gmx.ch",$subject,$content);
+    $content = "Hi " . $university->getOrganization() . " \n Please use this link to reset your password "
+        . "https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id=" . $university->getIDuniversity();
+    EmailServiceClient::sendEmail("tim.vandijke@gmx.ch", $subject, $content);
     Router::redirect("/index");
 });
 
-Router::route_auth("GET", "/ForgotPasswordSet", $authFunction, function () {
+Router::route_auth("GET", "ForgotPasswordSet", $authFunction, function () {
     $universityID = $_GET["id"];
 
     $pdoInstance = Database::connect();
@@ -208,14 +208,24 @@ Router::route_auth("GET", "/ForgotPasswordSet", $authFunction, function () {
     //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
 });
-
+Router::route("POST", "ForgotPasswordSet", function () {
+    if ($_POST["password"] == $_POST["password-repeat"]) {
+        $universityDAO = new UniversityDAO();
+        $university = $universityDAO->findByID($_POST["id"]);
+        $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
+        $universityDAO->update($university);
+        Router::redirect("/Login");
+    } else {
+        Router::redirect("/ForgotPasswordSet?id=".$_POST["id"]);
+    }
+});
 
 Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     //require("database/database.php");
 
     $courseDAO = new CourseDAO();
-    $id= $_SESSION["universityLogin"]["id"];
-    if(is_null($id)){
+    $id = $_SESSION["universityLogin"]["id"];
+    if (is_null($id)) {
         router::redirect("/");
     }
     global $courses;
@@ -292,7 +302,7 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
-       //PDFController::generatePDFCustomers($course);
+        //PDFController::generatePDFCustomers($course);
 
         EmailController::sendInvoice($course);
         //Router::redirect("/customerListPDF");

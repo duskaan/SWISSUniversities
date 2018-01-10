@@ -8,17 +8,21 @@
 
 /**
  * Created by PhpStorm.
- * User: andreas.martin
- * Date: 13.09.2017
- * Time: 17:06
+ * User: Tim van Dijke
  */
 global $university;
 ?>
 <div class="container">
     <div class="page-header">
         <h2 class="text-center">A <strong>course</strong>. </h2></div>
-    <form action="update" method="post">
+    <form action="ForgotPasswordSet" method="post">
         <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><span>ID </span></div>
+                <input class="form-control" type="text" name="id" readonly=""
+                       value="<?php echo !empty($university["ID_university"]) ? $university["ID_university"] : ''; ?>">
+            </div>
+        </div><div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><span>Organization </span></div>
                 <input class="form-control" type="text" name="organization" readonly=""
