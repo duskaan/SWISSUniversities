@@ -19,6 +19,14 @@
     <div class="page-header">
         <h2 class="text-center">My <strong>courses</strong>.</h2></div>
         <h4 class="text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</h4>
+    <?php
+    global $courses;
+    if(empty($courses)){
+        echo("<h3> you have no records yet. Press here to add a course<a class=\"btn btn-default\" role=\"button\" href=\"course-create\"> <i class=\"fa fa-plus-square-o\"></i></a></h3> ");
+        }else{
+
+
+    ?>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -79,5 +87,5 @@
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
+    <?php endforeach; }?>
 </div>

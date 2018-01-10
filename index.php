@@ -77,7 +77,7 @@ Router::route("POST", "/login", function () {
     $email = $_POST["email"];
     $universityDAO = new UniversityDAO();
     $university = $universityDAO->findByEmail($email);
-    if (isset($university)) {
+    if (!empty($university)) {
         if (password_verify($_POST["password"], $university->getPassword())) {
             $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
             $_SESSION["universityLogin"]["email"] = $email;

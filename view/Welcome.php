@@ -28,14 +28,14 @@ use service\EmailServiceClient;
             'Reply-To: tim.vandijke@gmx.ch\'' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        if(EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","test","another test as a body"))
+        /*if(EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","test","another test as a body"))
         {
             echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
         }
         else {
             echo ("<p>The mail could not be sent to your account</p>");
         }
-           ?>
+           */?>
             </h3><br>
     <h4>Your information:</h4>
     <table class="table">
