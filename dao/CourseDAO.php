@@ -91,12 +91,12 @@ class CourseDAO extends BasicDAO {
 	 * @param Customer customer
 	 * @ParamType customer Customer
 	 */
-	public function delete(Customer $customer) {
+	public function delete(Course $course) {
         $stmt = $this->pdoInstance->prepare('
-            DELETE FROM customer
-            WHERE id = :id
+            DELETE FROM course
+            WHERE "ID_course" = :id
         ');
-        $stmt->bindValue(':id', $customer->getId());
+        $stmt->bindValue(':id', $course->getIDcourse());
         $stmt->execute();
 	}
 

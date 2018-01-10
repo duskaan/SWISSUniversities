@@ -123,7 +123,6 @@ Router::route_auth("GET", "/",$authFunction, function() {
 });
 
 Router::route_auth("GET", "/index",$authFunction, function () {
-
     layoutSetContent("view/index.php");
 });
 
@@ -248,7 +247,7 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     $stmt->execute();
     global $course;
     $course = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
-    layoutSetContent("view/courseEdit.php");
+    Router::redirect("/CourseOverview");
 
     /*
 
@@ -257,17 +256,17 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     $courseDAO = new CourseDAO();
     $course = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
     $course = WECRMServiceImpl::getInstance()->readCustomer($id);
-    layoutSetContent("courseEdit.php");*/ /*
+    layoutSetContent("courseEdit.php");*/
 });
 
 Router::route_auth("GET", "/course-delete", $authFunction, function () {
-    /* TODO: WECRMServiceImpl::getInstance()->deleteCustomer($id); */
+    // TODO: WECRMServiceImpl::getInstance()->deleteCustomer($id);
     $id = $_GET["id"];
     $courseDAO = new CourseDAO();
     $course = new Course();
     $course->setIDcourse($id);
     $courseDAO->delete($course);
-    Router::redirect("/");
+    Router::redirect("/CourseOverview");
 });
 Router::route_auth("GET", "Welcome", $authFunction, function () {
     layoutSetContent("view/Welcome.php");
