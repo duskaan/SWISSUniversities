@@ -32,39 +32,44 @@ $authFunction = function () {
 };
 
 Router::route("GET", "/login", function () {
-    require_once("view/Login.php");
+    layoutSetContent("view/Login.php");
 });
 
 Router::route("GET", "/register", function () {
-    require_once("view/Register.php");
+    layoutSetContent("view/Register.php");
     session_create_id();
 });
 
 Router::route("POST", "/register", function () {
     /* TODO: refactor and use WECRMServiceImpl::getInstance()->editAgent($_POST["name"],$_POST["email"], $_POST["password"]); */
     //todo use university
-    $university = new University();
-    $university->setOrganization($_POST["organization"]);
-    $university->setRegion($_POST["region"]);
-    $university->setInstitute($_POST["institute"]);
-    $university->setDescription($_POST["description"]);
-    $university->setEmail($_POST["email"]);
-    $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
-    $universityDAO = new UniversityDAO();
-    $universityDAO->create($university);
+    if($_POST["password"]==$_POST["password-repeat"]){
+        $university = new University();
+        $universityDAO = new UniversityDAO();
+        if(is_null($universityDAO->findByEmail($_POST["email"]))){
+            $university->setOrganization($_POST["organization"]);
+            $university->setRegion($_POST["region"]);
+            $university->setInstitute($_POST["institute"]);
+            $university->setDescription($_POST["description"]);
+            $university->setEmail($_POST["email"]);
+            $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
 
+            $universityDAO->create($university);
+            $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
+            $_SESSION["universityLogin"]["email"] = $university->getEmail();
+            $_SESSION["universityLogin"]["id"] = session_id();
+            //$_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getIDuniversity();
 
-    $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
-    $_SESSION["universityLogin"]["email"] = $university->getEmail();
-    $_SESSION["universityLogin"]["id"] = session_id();
-    //$_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getIDuniversity();
-
-    $_SESSION["universityLogin"]["region"] = $university->getRegion();
-    $_SESSION["universityLogin"]["description"] = $university->getDescription();
-    $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
-    Router::redirect("/Welcome");
-
-
+            $_SESSION["universityLogin"]["region"] = $university->getRegion();
+            $_SESSION["universityLogin"]["description"] = $university->getDescription();
+            $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
+            Router::redirect("/Welcome");
+        }else{
+            Router::redirect("/login");
+        }
+    }else{
+        Router::redirect("/register");
+    }
 });
 
 Router::route("POST", "/login", function () {
@@ -82,7 +87,7 @@ Router::route("POST", "/login", function () {
                 $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                 $universityDAO->update($university);
             };
-            Router::redirect("/Welcome");
+            Router::redirect("/CourseOverview");
         }
     } else {
         Router::redirect("/index");
@@ -103,7 +108,7 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
     } else {
         router::redirect("/EduResults");
     }
-    require_once("view/EduResults.php");
+    //require_once("view/EduResults.php");
     layoutSetContent("view/EduResults.php");
     //Router::redirect("/EduResults");
 });
@@ -123,49 +128,49 @@ Router::route_auth("GET", "/index",$authFunction, function () {
 });
 
 Router::route_auth("GET", "AboutUs", $authFunction, function () {
-    require_once("view/AboutUs.php");
+    //require_once("view/AboutUs.php");
     layoutSetContent("view/AboutUs.php");
 });
 Router::route_auth("GET", "ForgotPassword", $authFunction, function () {
-    require_once("view/ForgotPasswordSet.php");
+    //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
 });
 Router::route_auth("GET", "Contact", $authFunction, function () {
-    require_once("view/Contact.php");
+    //require_once("view/Contact.php");
     layoutSetContent("view/Contact.php");
 });
 Router::route_auth("GET", "Disclaimer", $authFunction, function () {
-    require_once("view/Disclaimer.php");
+    //require_once("view/Disclaimer.php");
     layoutSetContent("view/Disclaimer.php");
 });
 Router::route_auth("GET", "EduProgram", $authFunction, function () {
-    require_once("view/EduProgram.php");
+    //require_once("view/EduProgram.php");
     layoutSetContent("view/EduProgram.php");
 });
 
 Router::route_auth("GET", "EduResults", $authFunction, function () {
-    require_once("view/EduProgram.php");
+    //require_once("view/EduProgram.php");
     layoutSetContent("view/EduProgram.php");
 });
 Router::route_auth("GET", "Login", $authFunction, function () {
-    require_once("view/Login.php");
+    //require_once("view/Login.php");
     layoutSetContent("view/Login.php");
 });
 Router::route_auth("GET", "Privacy", $authFunction, function () {
-    require_once("view/Privacy.php");
+    //require_once("view/Privacy.php");
     layoutSetContent("view/Privacy.php");
 });
 Router::route_auth("GET", "Register", $authFunction, function () {
-    require_once("view/Register.php");
+    //require_once("view/Register.php");
 
     layoutSetContent("view/Register.php");
 });
 Router::route_auth("GET", "Terms", $authFunction, function () {
-    require_once("view/Terms.php");
+    //require_once("view/Terms.php");
     layoutSetContent("view/Terms.php");
 });
 Router::route_auth("GET", "TileTest", $authFunction, function () {
-    require_once("view/TileTest.php");
+    //require_once("view/TileTest.php");
     layoutSetContent("view/TileTest.php");
 });
 Router::route_auth("POST", "ForgotPasswordGet", $authFunction, function () {
@@ -196,7 +201,7 @@ Router::route_auth("GET", "/ForgotPasswordSet", $authFunction, function () {
     $stmt->execute();
     global $university;
     $university = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
-    require_once("view/ForgotPasswordSet.php");
+    //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
 });
 
@@ -221,7 +226,7 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     // TODO: extend the customers.php file to show the data
     */
     //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*//*
-    require_once("view/CourseOverview.php");
+    //require_once("view/CourseOverview.php");
     layoutSetContent("view/CourseOverview.php");
 
 });

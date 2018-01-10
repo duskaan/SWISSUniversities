@@ -57,5 +57,6 @@
                     </button>
                 </div>
                 <a href="Login.php" class="already">You already have an account? Login here.</a>
+
 			</form>
         </div>

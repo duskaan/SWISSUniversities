@@ -33,10 +33,7 @@ use service\EmailServiceClient;
             echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
         }
         else {
-            echo ("<p> To </p>");echo $to;
-            echo ("<p> subject </p>" );  $subject;
-            echo ("<p> message </p>"); echo $message;
-            echo ("<p> headers</p>");echo $headers;
+            echo ("<p>The mail could not be sent to your account</p>");
         }
            ?>
             </h3><br>
