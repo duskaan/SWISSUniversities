@@ -8,17 +8,22 @@
 
 namespace controller;
 
+use dao\CourseDAO;
+use dao\UniversityDAO;
 use service\CustomerServiceImpl;
 use view\TemplateView;
 use service\PDFServiceClient;
 
 class PDFController
 {
-    public static function generatePDFCustomers(){
+    /**
+     * @param $course
+     */
+    public static function generatePDFCustomers($course){
         $pdfView = new TemplateView("customerListPDF.php");
-        $pdfView->customers = (new CustomerServiceImpl())->findAllCustomer();
-        $result = PDFServiceClient::sendPDF($pdfView->render());
+        $pdfView->course = $course;
+        //$result = PDFServiceClient::sendPDF($pdfView->render());
         header("Content-Type: application/pdf", NULL, 200);
-        echo $result;
+        //echo $result;
     }
 }

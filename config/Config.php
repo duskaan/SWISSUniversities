@@ -34,6 +34,20 @@ class Config
         } elseif (isset($_ENV["SENDGRID_APIKEY"])) {
             self::$config["email"]["apikey"] = getenv('SENDGRID_APIKEY');
         }
+        if (file_exists(self::$iniFile)) {
+            $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
+            self::$config["pdf"]["hypdf-user"] = $pdfConfig["user"];
+
+        }elseif (isset($_ENV["hypdf_user"])) {
+            $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
+            self::$config["pdf"]["hypdf-user"] = $pdfConfig["user"];
+        }
+        if (file_exists(self::$iniFile)) {
+            $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
+            self::$config["pdf"]["hypdf-password"] = $pdfConfig["password"];}
+        elseif (isset($_ENV["HYPDF_PASSWORD"])) {
+            self::$config["pdf"]["hypdf-password"] = $pdfConfig["password"];;
+        }
     }
 
     public static function pdoConfig($key)
@@ -52,7 +66,7 @@ class Config
 
     public static function pdfConfig($key)
     {
-        if (empty(self::$config))
+        if (empty(self::$config["pdf"][$key]))
             self::init();
         return self::$config["pdf"][$key];
     }

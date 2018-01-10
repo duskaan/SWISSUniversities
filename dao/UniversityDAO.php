@@ -85,10 +85,10 @@ class UniversityDAO extends BasicDAO {
             return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\University")[0];
         return null;
     }
-    public function findByOrganization($organization) {
+    public function findByID($id) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT "ID_university" FROM university WHERE organization = :org LIMIT 1;');
-        $stmt->bindValue(':org', $organization);
+            SELECT * FROM university WHERE "ID_university" = :id ;');
+        $stmt->bindValue(':id', $id);
         $stmt->execute();
         if ($stmt->rowCount() > 0)
             return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\University")[0];

@@ -18,7 +18,9 @@ use dao\UniversityDAO;
 use domain\filteredCourse;
 use database\Database;
 use service\EmailServiceClient;
+use controller\EmailController;
 use service\PDFServiceClient;
+use controller\PDFController;
 
 
 session_start();
@@ -133,6 +135,10 @@ Router::route_auth("GET", "AboutUs", $authFunction, function () {
 Router::route_auth("GET", "ForgotPassword", $authFunction, function () {
     //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
+});
+Router::route_auth("GET", "customerListPDF", $authFunction, function () {
+    //require_once("view/ForgotPasswordSet.php");
+    layoutSetContent("view/customerListPDF.php");
 });
 Router::route_auth("GET", "Contact", $authFunction, function () {
     //require_once("view/Contact.php");
@@ -287,6 +293,9 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
+       PDFController::generatePDFCustomers($course);
+       Router::redirect("/customerListPDF");
+        //EmailController::sendInvoice($course);
         //WECRMServiceImpl::getInstance()->createCustomer($course);
     } else {
         $courseDAO->update($course);
@@ -300,7 +309,7 @@ Router::route_auth("GET", "/course/email", $authFunction, function () {
 });
 
 Router::route_auth("GET", "/course/pdf", $authFunction, function () {
-    PDFController::generatePDFCustomers();
+    //PDFController::generatePDFCustomers();
 });
 try {
     Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO']);

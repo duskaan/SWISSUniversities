@@ -8,16 +8,25 @@
 
 namespace controller;
 
+use dao\CourseDAO;
+use dao\UniversityDAO;
+use domain\Course;
 use service\AuthServiceImpl;
 use service\CustomerServiceImpl;
-use view\TemplateView;
+
 use service\EmailServiceClient;
 
 class EmailController
 {
-    public static function sendMeMyCustomers(){
+    public static function sendInvoice(Course $course){
+        PDFController::generatePDFCustomers($course);
+
+        $universityDao = new UniversityDAO();
+        $email = $universityDao->findByID()->getEmail();
+
+
         $emailView = new TemplateView("customerListEmail.php");
         $emailView->customers = (new CustomerServiceImpl())->findAllCustomer();
-        return EmailServiceClient::sendEmail(AuthServiceImpl::getInstance()->readAgent()->getEmail(), "My current customers", $emailView->render());
+        return EmailServiceClient::sendEmail($email, "Invoice for new Course", $emailView->render());
     }
 }
