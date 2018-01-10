@@ -63,29 +63,30 @@
                             <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal" data-href="course-delete?id=<?php echo $course["ID_course"]; ?>"> <i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </td>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="confirm-modal">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title">Deletion of a <strong>course</strong>.</h4></div>
+                                <div class="modal-body">
+                                    <p>Do you want to delete the course?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel </button><a class="btn btn-primary" role="button" href="course-delete?id=<?php echo $course["ID_course"]; ?>">Delete </a></div>
+                            </div>
+                        </div>
+                    </div>
                 </tr>
-
+            <?php endforeach; }?>
             </tbody>
         </table>
     </div>
+
+
     <div class="btn-group" role="group">
         <a class="btn btn-default" role="button" href="course-create"> <i class="fa fa-plus-square-o"></i></a>
         <button class="btn btn-default" type="button"> <i class="fa fa-file-pdf-o"></i></button>
         <button class="btn btn-default" type="button"> <i class="fa fa-envelope-o"></i></button>
     </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="confirm-modal">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Deletion of a <strong>course</strong>.</h4></div>
-                <div class="modal-body">
-                    <p>Do you want to delete the course?</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel </button><a class="btn btn-primary" role="button" href="course-delete?id=<?php echo $course["ID_course"]; ?>">Delete </a></div>
-            </div>
-        </div>
-    </div>
-    <?php endforeach; }?>
 </div>

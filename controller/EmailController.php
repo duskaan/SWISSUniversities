@@ -19,7 +19,7 @@ use service\EmailServiceClient;
 class EmailController
 {
     public static function sendInvoice(Course $course){
-        PDFController::generatePDFCustomers($course);
+        $content = PDFController::generatePDFCustomers($course);
 
         $universityDao = new UniversityDAO();
         $email = $universityDao->findByID()->getEmail();
@@ -27,6 +27,6 @@ class EmailController
 
         $emailView = new TemplateView("customerListEmail.php");
         $emailView->customers = (new CustomerServiceImpl())->findAllCustomer();
-        return EmailServiceClient::sendEmail($email, "Invoice for new Course", $emailView->render());
+        return EmailServiceClient::sendEmail($email, "Invoice for new Course", $content);
     }
 }
