@@ -56,7 +56,7 @@
                         </div>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+
             </tbody>
         </table>
     </div>
@@ -75,8 +75,9 @@
                     <p>Do you want to delete a customer?</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel </button><a class="btn btn-primary" role="button" href="#">Delete </a></div>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel </button><a class="btn btn-primary" role="button" href="course-delete?id=<?php echo $course["ID_course"]; ?>">Delete </a></div>
             </div>
         </div>
     </div>
+    <?php endforeach; ?>
 </div>

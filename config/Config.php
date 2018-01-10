@@ -28,12 +28,12 @@ class Config
             self::$config["pdo"]["user"] = $dbopts["user"];
             self::$config["pdo"]["password"] = $dbopts["pass"];
         }
-        if (file_exists(self::$iniFile)) {
+        /*if (file_exists(self::$iniFile)) {
             $mailConfig = parse_ini_file(self::$iniFile, true)["sendgrid"];
             self::$config["email"]["apikey"] = $mailConfig ["apikey"];
         } elseif (isset($_ENV["SENDGRID_APIKEY"])) {
             self::$config["email"]["apikey"] = getenv('SENDGRID_APIKEY');
-        }
+        }*/
     }
 
     public static function pdoConfig($key)
