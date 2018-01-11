@@ -160,7 +160,7 @@ Router::route("GET", "Disclaimer", function () {
 });
 Router::route("GET", "EduProgram", function () {
     //require_once("view/EduProgram.php");
-    layologoutSetContent("view/EduProgram.php");
+    layoutSetContent("view/EduProgram.php");
 });
 
 Router::route("GET", "EduResults",  function () {
