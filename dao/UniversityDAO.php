@@ -45,10 +45,10 @@ class UniversityDAO extends BasicDAO {
 	 */
 	public function read($universityID) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM university WHERE ID_university = :id;');
+            SELECT * FROM university WHERE "ID_university" = :id;');
         $stmt->bindValue(':id', $universityID);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Agent")[0];
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\University")[0];
     }
 
 	/**
@@ -60,12 +60,14 @@ class UniversityDAO extends BasicDAO {
 	 */
 	public function update(University $university) {
         $stmt = $this->pdoInstance->prepare('
-                UPDATE university SET organization=:org,region=:region, email=:email, password=:password WHERE "ID_university"= :id;');
+                UPDATE university SET organization=:org,region=:region, email=:email, institute=:institute,description=:description, password=:password WHERE "ID_university"= :id;');
         $stmt->bindValue(':org', $university->getOrganization());
         $stmt->bindValue(':id', $university->getIDuniversity());
         $stmt->bindValue(':region', $university->getRegion());
         $stmt->bindValue(':email', $university->getEmail());
         $stmt->bindValue(':password', $university->getPassword());
+        $stmt->bindValue(':institute', $university->getInstitute());
+        $stmt->bindValue(':description', $university->getDescription());
         $stmt->execute();
 	}
 

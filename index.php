@@ -261,9 +261,30 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     layoutSetContent("view/CourseOverview.php");
 
 });
-Router::route_auth("POST", "/agent/edit", $authFunction, function () {
-    WECRMServiceImpl::getInstance()->editAgent($_POST["name"], $_POST["email"], $_POST["password"]);
-    Router::redirect("/logout");
+Router::route_auth("POST", "/university-edit", $authFunction, function () {
+    if ($_POST["password"] == $_POST["password-repeat"]) {
+    $university = new University();
+    $universityDAO = new UniversityDAO();
+    $university->setOrganization($_POST["organization"]);
+    $university->setRegion($_POST["region"]);
+    $university->setInstitute($_POST["institute"]);
+    $university->setDescription($_POST["description"]);
+    $university->setEmail($_POST["email"]);
+    $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
+
+    $universityDAO->update($university);
+    $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
+    $_SESSION["universityLogin"]["email"] = $university->getEmail();
+    $_SESSION["universityLogin"]["id"] = session_id();
+    //$_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getIDuniversity();
+    $_SESSION["universityLogin"]["region"] = $university->getRegion();
+    $_SESSION["universityLogin"]["description"] = $university->getDescription();
+    $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
+
+    Router::redirect("/Welcome");}
+    else{
+        Router::redirect("/university-edit");
+    }
 });
 
 Router::route_auth("GET", "/course-create", $authFunction, function () {
@@ -279,7 +300,7 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     $stmt->execute();
     global $course;
     $course = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
-    Router::redirect("/CourseOverview");
+    layoutSetContent("courseEdit.php");
 
     /*
 
@@ -302,6 +323,12 @@ Router::route_auth("GET", "/course-delete", $authFunction, function () {
 });
 Router::route_auth("GET", "Welcome", $authFunction, function () {
     layoutSetContent("view/Welcome.php");
+});
+Router::route_auth("GET", "/university-edit", $authFunction, function () {
+    Global $university;
+    $universityDAO = new UniversityDAO();
+    $university = $universityDAO->read($_SESSION["universityLogin"]["id"]);
+    layoutSetContent("view/UniversityEdit.php");
 });
 Router::route_auth("POST", "/update", $authFunction, function () {
     $course = new Course();
