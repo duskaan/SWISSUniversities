@@ -29,17 +29,23 @@ $authFunction = function () {
     if (isset($_SESSION["universityLogin"])) {
         return true;
     }
-    //router::redirect("/");
-    return true;
+    router::redirect("/Login");
 };
 
-Router::route("GET", "/login", function () {
-    layoutSetContent("view/Login.php");
+Router::route("GET", "/Login", function () {
+    if (isset($_SESSION["universityLogin"])) {
+        Router::redirect("/logout");
+    }else {
+        layoutSetContent("view/Login.php");
+    }
 });
 
-Router::route("GET", "/register", function () {
-    layoutSetContent("view/Register.php");
-    session_create_id();
+Router::route("GET", "/Register", function () {
+    if (isset($_SESSION["universityLogin"])) {
+        Router::redirect("/logout");
+    }else{
+        layoutSetContent("view/Register.php");
+    }
 });
 
 Router::route("POST", "/register", function () {
@@ -66,7 +72,7 @@ Router::route("POST", "/register", function () {
             $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
             Router::redirect("/Welcome");
         } else {
-            Router::redirect("/login");
+            Router::redirect("/Login");
         }
     } else {
         Router::redirect("/register");
@@ -98,7 +104,7 @@ Router::route("POST", "/login", function () {
         Router::redirect("/index");
     }
 });
-Router::route_auth("POST", "EduResults", $authFunction, function () {
+Router::route("POST", "EduResults", function () {
     $filter = new filteredCourse();
     $filter->setDiscipline($_POST["discipline"]);
     $filter->setDegree($_POST["degree"]);
@@ -118,25 +124,25 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
     //Router::redirect("/EduResults");
 });
 
-Router::route("GET", "/logout", function () {
+Router::route_auth("GET", "/logout",$authFunction, function () {
     session_destroy();
     setcookie("token", "", time() - 3600, "/");
-    Router::redirect("/login");
+    Router::redirect("/Login");
 });
 
-Router::route_auth("GET", "/", $authFunction, function () {
+Router::route("GET", "/", function () {
     layoutSetContent("view/index.php");
 });
 
-Router::route_auth("GET", "index", $authFunction, function () {
+Router::route("GET", "index",function () {
     layoutSetContent("view/index.php");
 });
 
-Router::route_auth("GET", "AboutUs", $authFunction, function () {
+Router::route("GET", "AboutUs",  function () {
     //require_once("view/AboutUs.php");
     layoutSetContent("view/AboutUs.php");
 });
-Router::route_auth("GET", "ForgotPassword", $authFunction, function () {
+Router::route("GET", "ForgotPassword", function () {
     //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
 });
@@ -144,20 +150,20 @@ Router::route_auth("GET", "customerListPDF", $authFunction, function () {
     //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/customerListPDF.php");
 });
-Router::route_auth("GET", "Contact", $authFunction, function () {
+Router::route("GET", "Contact", function () {
     //require_once("view/Contact.php");
     layoutSetContent("view/Contact.php");
 });
-Router::route_auth("GET", "Disclaimer", $authFunction, function () {
+Router::route("GET", "Disclaimer", function () {
     //require_once("view/Disclaimer.php");
     layoutSetContent("view/Disclaimer.php");
 });
-Router::route_auth("GET", "EduProgram", $authFunction, function () {
+Router::route("GET", "EduProgram", function () {
     //require_once("view/EduProgram.php");
-    layoutSetContent("view/EduProgram.php");
+    layologoutSetContent("view/EduProgram.php");
 });
 
-Router::route_auth("GET", "EduResults", $authFunction, function () {
+Router::route("GET", "EduResults",  function () {
     //require_once("view/EduProgram.php");
     if(isset($_GET["match"])){
         layoutSetContent("view/EduPrograms.php");
@@ -165,20 +171,13 @@ Router::route_auth("GET", "EduResults", $authFunction, function () {
         layoutSetContent("view/EduProgram.php");
     }
 });
-Router::route_auth("GET", "Login", $authFunction, function () {
-    //require_once("view/Login.php");
-    layoutSetContent("view/Login.php");
-});
-Router::route_auth("GET", "Privacy", $authFunction, function () {
+
+Router::route("GET", "Privacy", function () {
     //require_once("view/Privacy.php");
     layoutSetContent("view/Privacy.php");
 });
-Router::route_auth("GET", "Register", $authFunction, function () {
-    //require_once("view/Register.php");
 
-    layoutSetContent("view/Register.php");
-});
-Router::route_auth("GET", "Terms", $authFunction, function () {
+Router::route("GET", "Terms",  function () {
     //require_once("view/Terms.php");
     layoutSetContent("view/Terms.php");
 });
@@ -201,7 +200,7 @@ Router::route("POST", "ForgotPasswordGet", function () {
     Router::redirect("/index");
 });
 
-Router::route_auth("GET", "ForgotPasswordSet", $authFunction, function () {
+Router::route("GET", "ForgotPasswordSet", function () {
     $universityID = $_GET["id"];
 
     $pdoInstance = Database::connect();

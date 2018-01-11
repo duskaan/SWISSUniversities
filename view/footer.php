@@ -24,7 +24,7 @@
                     <h3 style="color:rgb(255,255,255);font-family:'Open Sans', sans-serif;font-size:19px;">Services</h3>
                     <ul>
                         <li><a href="EduProgram" style="color:rgb(255,255,255);font-weight:normal;font-size:16px;">Educaional Programs</a></li>
-                        <li><a href="register" style="font-weight:normal;font-size:16px;">Register </a></li>
+                        <li><a href="Register" style="font-weight:normal;font-size:16px;">Register </a></li>
                         <li><a href="Login" style="font-weight:normal;font-size:16px;">Login </a></li>
                     </ul>
                 </div>
