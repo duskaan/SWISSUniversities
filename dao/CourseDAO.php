@@ -139,5 +139,37 @@ class CourseDAO extends BasicDAO {
         //return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
 
     }
+    public function getID(Course $course)
+    {
+        $stmt = $this->pdoInstance->prepare('
+            SELECT * FROM course 
+            WHERE  "FK_university"= :FKid 
+            AND name= :name
+            AND startdate= :startdate
+            AND discipline= :discipline
+            AND description= :description
+            AND degree= :degree
+            AND attendance= :attendance
+            AND duration= :duration
+            AND link= :link
+            AND language= :language
+            ');
+        $stmt->bindValue(':FKid', $course->getFKUniversity());
+        $stmt->bindValue(':name', $course->getName());
+        $stmt->bindValue(':startdate', $course->getStartdate());
+        $stmt->bindValue(':discipline', $course->getDiscipline());
+        $stmt->bindValue(':description', $course->getDescription());
+        $stmt->bindValue(':degree', $course->getDegree());
+        $stmt->bindValue(':attendance', $course->getAttendance());
+        $stmt->bindValue(':duration', $course->getDuration());
+        $stmt->bindValue(':link', $course->getLink());
+        $stmt->bindValue(':language', $course->getLanguage());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];
+        if (!empty($result)) {
+            return $result;
+        }
+    }
 }
 ?>

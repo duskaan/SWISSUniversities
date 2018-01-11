@@ -150,6 +150,18 @@ Router::route_auth("GET", "customerListPDF", $authFunction, function () {
     //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/customerListPDF.php");
 });
+Router::route("GET", "PDF",  function () {
+    $courseDAO= new CourseDAO();
+    $course = $courseDAO->read($_GET["id"]);
+    echo EmailController::generateContent($course);
+    header("Content-Type: application/pdf", NULL, 200);
+    layoutSetContent("/index");
+/*
+    global $results;
+    echo $results; //todo create the pdf here instead of trying to send it. and give the IDCourse with pdf so that i know which course
+    header("Content-Type: application/pdf", NULL, 200);*/
+
+});
 Router::route("GET", "Contact", function () {
     //require_once("view/Contact.php");
     layoutSetContent("view/Contact.php");
@@ -307,9 +319,11 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
+
         //PDFController::generatePDFCustomers($course);
 
-        EmailController::sendInvoice($course);
+
+        EmailController::sendInvoice($courseDAO->getID($course));
         //Router::redirect("/customerListPDF");
         //WECRMServiceImpl::getInstance()->createCustomer($course);
     } else {

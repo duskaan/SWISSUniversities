@@ -24,8 +24,8 @@ class PDFController
         $pdfView->course = $course;
         $pdfView->university = $university;
         $result = PDFServiceClient::sendPDF($pdfView->render());
-        //header("Content-Type: application/pdf", NULL, 200);
-        //echo $result;
+        header("Content-Type: application/pdf", NULL, 200);
+        echo $result;
         return $result;
     }
 }
