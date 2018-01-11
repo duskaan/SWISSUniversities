@@ -23,19 +23,16 @@ use service\EmailServiceClient;
     <h3 class="text-center"><?php
         $to = $_SESSION["universityLogin"]["email"];
         $subject = 'Registering for Swiss Universities';
-        $message = 'Hi Thank you for registering at Swiss Universities ';
+        $message = 'Hi '.$_SESSION["universityLogin"]["email"].' Thank you for registering at Swiss Universities ';
         $headers = 'From: tim.vandijke@gmx.ch' . "\r\n" .
             'Reply-To: tim.vandijke@gmx.ch\'' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        /*if(EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","test","another test as a body"))
+        if(EmailServiceClient::sendEmail($to,$subject,$message))
         {
             echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
-        }
-        else {
-            echo ("<p>The mail could not be sent to your account</p>");
-        }
-           */?>
+
+           ?>
             </h3><br>
     <h4>Your information:</h4>
     <table class="table">
@@ -43,11 +40,10 @@ use service\EmailServiceClient;
         <tr>
             <th>Organization </th>
             <th>Region </th>
-            <th>Decription </th>
+            <th>Description </th>
             <th>Institute </th>
             <th>E-Mail </th>
             <th>ID </th>
-            <th>Startdate </th>
 
         </tr>
         </thead>
@@ -59,7 +55,6 @@ use service\EmailServiceClient;
                 <td><?php echo $_SESSION["universityLogin"]["institute"]; ?> </td>
                 <td><?php echo $_SESSION["universityLogin"]["email"]; ?> </td>
                 <td><?php echo $_SESSION["universityLogin"]["id"];?></td>
-                <td><?php //echo $_SESSION["universityLogin"]["startDate"];?></td>
 
             </tr>
         </tbody>
@@ -80,4 +75,8 @@ use service\EmailServiceClient;
             </div>
         </div>
     </div>
+    <?php }
+        else {
+            echo ("<p>The mail could not be sent to your account</p>");
+        }?>
 </div>

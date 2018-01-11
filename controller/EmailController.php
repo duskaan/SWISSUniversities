@@ -19,12 +19,13 @@ use service\EmailServiceClient;
 class EmailController
 {
     public static function sendInvoice(Course $course){
-        $content = PDFController::generatePDFCustomers($course);
-
         $universityDao = new UniversityDAO();
-        $email = $universityDao->findByID($course->getFKUniversity())->getEmail();
+        $university= $universityDao->findByID($course->getFKUniversity());
+        $content = PDFController::generatePDFCustomers($course,$university);
 
-        return EmailServiceClient::sendEmail($email, "Invoice for new Course", $content);
+        $email = $university->getEmail();
+
+        return EmailServiceClient::sendInvoiceMail($email, "Invoice for new Course","Please pay the attached invoice as soon as possible", $content);
         //return EmailServiceClient::sendEmail($email, "Invoice for new Course", "teset");
     }
 }

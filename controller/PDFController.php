@@ -19,9 +19,10 @@ class PDFController
     /**
      * @param $course
      */
-    public static function generatePDFCustomers($course){
+    public static function generatePDFCustomers($course, $university){
         $pdfView = new TemplateView("customerListPDF.php");
         $pdfView->course = $course;
+        $pdfView->university = $university;
         $result = PDFServiceClient::sendPDF($pdfView->render());
         //header("Content-Type: application/pdf", NULL, 200);
         //echo $result;

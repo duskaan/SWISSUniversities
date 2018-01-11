@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </tr>
-            <?php endforeach; }?>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -89,4 +89,5 @@
         <button class="btn btn-default" type="button"> <i class="fa fa-file-pdf-o"></i></button>
         <button class="btn btn-default" type="button"> <i class="fa fa-envelope-o"></i></button>
     </div>
+    <?php } ?>
 </div>

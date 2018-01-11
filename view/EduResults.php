@@ -40,11 +40,11 @@
             <tbody>
             <?php
             global $filteredCourses;
-            if (!empty($filteredCourses)) {
-                echo "is not empty";
+            if (empty($filteredCourses)) {
+                echo "<h1>There is no matching courses";
             } else {
-                echo "is empty";
-            }
+
+
 
 
             foreach ($filteredCourses as $filteredCourse): ?>
@@ -63,7 +63,7 @@
 
             </tr>
 
-<?php endforeach; ?>
+<?php endforeach; }?>
 </tbody>
 
 </table>

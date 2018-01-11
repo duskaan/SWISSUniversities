@@ -32,21 +32,20 @@
                     <h3 style="color:rgb(255,255,255);font-family:'Open Sans', sans-serif;font-size:19px;"> About Us</h3>
                     <ul>
                         <li><a href="AboutUs" style="font-weight:normal;font-size:16px;">About SwissStudyPortal</a></li>
-                        <li><a href="AboutUs" style="font-weight:normal;font-size:16px;">Contact Us</a></li>
+                        <li><a href="Contact" style="font-weight:normal;font-size:16px;">Contact Us</a></li>
                         <li style="font-weight:normal;"><a href="AboutUs" style="font-size:16px;">Team</a></li>
                         <li><a href="AboutUs" style="font-weight:normal;font-size:16px;">Careers</a></li>
                     </ul>
                 </div>
                 <div class="col-md-12 col-sm-4 item social" style="padding-top:24px;padding-bottom:0px;"><a href="https://www.facebook.com/fhnw.ch"><i class="icon ion-social-facebook"></i></a><a href="https://www.linkedin.com/organization/50566"><i class="fa fa-linkedin"></i></a><a href="https://www.youtube.com/user/FHNWbusiness"><i class="fa fa-youtube-play"></i></a>
-                    <a
-                            href="https://twitter.com/FHNW"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/fhnwbusiness/?hl=de"><i class="fa fa-instagram"></i></a></div>
+                    <a href="https://twitter.com/FHNW"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/fhnwbusiness/?hl=de"><i class="fa fa-instagram"></i></a></div>
             </div>
         </div>
     </footer>
     <div id="copyright" style="background-color:#e8eced;">
         <div class="container">
             <p class="text-center copyright" style="padding-bottom:5px;font-family:'Open Sans', sans-serif;color:rgb(49,50,51);padding-top:24px;margin-bottom:0px;">Copyright © 2017-2027 SwissStudyPortal GmbH</p>
-            <p class="text-center" style="font-size:13px;font-family:'Open Sans', sans-serif;padding-bottom:24px;margin:0px;color:rgb(146,150,153);"><a href="Disclaimer" target="_blank">Disclaimer</a> | Terms of use | Privacy &amp; Cookie statement</p>
+            <p class="text-center" style="font-size:13px;font-family:'Open Sans', sans-serif;padding-bottom:24px;margin:0px;color:rgb(146,150,153);"><a href="Disclaimer" target="_blank">Disclaimer</a> | <a href="Terms" target="_blank">Terms of use </a>| <a href="Privacy" target="_blank">Privacy &amp; Cookie statement </a></p>
         </div>
     </div>
 </div>

@@ -1,5 +1,11 @@
-
-    <div style="background-color:rgba(19,116,177,0.35);">
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tim
+ * Date: 11.01.2018
+ * Time: 09:32
+ */ ?>
+<div style="background-color:rgba(19,116,177,0.35);">
         <div class="container">
             <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
                 <li><a href="index.php"><span>Home</span></a></li>
@@ -15,6 +21,7 @@
         <h1>Choose your what? where? and how? preferences!</h1>
         <p style="padding-bottom:80px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
             sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+        <h2>No Course matches to the selected filters. </h2>
 
             <div style="padding-bottom:50px;">
             <div class="row row-align" style="height:58px;">

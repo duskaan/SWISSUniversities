@@ -1,5 +1,6 @@
 <?php use view\TemplateView;
-$this->course; ?>
+$this->course;
+$this->university?>
 <!doctype html>
 <html>
 <head>
@@ -113,9 +114,9 @@ $this->course; ?>
                         </td>
 
                         <td>
-                            Invoice #: <?php echo($course->getIDcourse()) ?><br>
-                            Created: January 10, 2018<br>
-                            Due: February 10, 2018
+                            Invoice #: <?php echo TemplateView::noHTML($course->getIDcourse())?><br>
+                            Created: <?php $date=getdate(); echo TemplateView::noHTML($date['mday'].".".$date['mon'].".".$date['year'] )?><br>
+                            Due: 14.2.2018
                         </td>
                     </tr>
                 </table>
@@ -127,15 +128,17 @@ $this->course; ?>
                 <table>
                     <tr>
                         <td>
+                            Seller: <br>
                             Swissuniversity Portal.<br>
                             Riggenbachstrasse 6<br>
                             Olten 4600
                         </td>
 
                         <td>
-                            Swiss Universities.<br>
-                            Tim van Dijke<br>
-                            tim.vandijke@gmx.ch
+                            Client:<br>
+                            <?php echo TemplateView::noHTML($university->getOrganization()) ?><br>
+                            <?php echo TemplateView::noHTML($university->getInstitute()) ?><br>
+                            <?php echo TemplateView::noHTML($university->getEmail()) ?><br>
                         </td>
                     </tr>
                 </table>
@@ -164,7 +167,7 @@ $this->course; ?>
 
         <tr class="heading">
             <td>
-                Item
+                Name of the course
             </td>
 
             <td>
@@ -175,12 +178,6 @@ $this->course; ?>
         <tr class="item last">
             <td>
                 <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Name </th>
-
-                    </tr>
-                    </thead>
                     <tbody>
                     <?php
                     $this->course; /* @var Course $course */ ?>
@@ -189,7 +186,6 @@ $this->course; ?>
 
                     </tr>
                     <?php ?>
-                    <p>The invoice costs are </p>
                     </tbody>
                 </table>
             </td>

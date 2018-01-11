@@ -61,7 +61,6 @@ Router::route("POST", "/register", function () {
             $_SESSION["universityLogin"]["email"] = $university->getEmail();
             $_SESSION["universityLogin"]["id"] = session_id();
             //$_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getIDuniversity();
-
             $_SESSION["universityLogin"]["region"] = $university->getRegion();
             $_SESSION["universityLogin"]["description"] = $university->getDescription();
             $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
@@ -90,6 +89,10 @@ Router::route("POST", "/login", function () {
                 $universityDAO->update($university);
             };
             Router::redirect("/CourseOverview");
+
+        }
+        else{
+            Router::redirect("/Login");
         }
     } else {
         Router::redirect("/index");
@@ -108,7 +111,7 @@ Router::route_auth("POST", "EduResults", $authFunction, function () {
     if (!empty($filteredCourses)) { //here it not is empty
 
     } else {
-        router::redirect("/EduResults");
+        router::redirect("/EduResults?match=false");
     }
     //require_once("view/EduResults.php");
     layoutSetContent("view/EduResults.php");
@@ -125,7 +128,7 @@ Router::route_auth("GET", "/", $authFunction, function () {
     layoutSetContent("view/index.php");
 });
 
-Router::route_auth("GET", "/index", $authFunction, function () {
+Router::route_auth("GET", "index", $authFunction, function () {
     layoutSetContent("view/index.php");
 });
 
@@ -156,7 +159,11 @@ Router::route_auth("GET", "EduProgram", $authFunction, function () {
 
 Router::route_auth("GET", "EduResults", $authFunction, function () {
     //require_once("view/EduProgram.php");
-    layoutSetContent("view/EduProgram.php");
+    if(isset($_GET["match"])){
+        layoutSetContent("view/EduPrograms.php");
+    }else{
+        layoutSetContent("view/EduProgram.php");
+    }
 });
 Router::route_auth("GET", "Login", $authFunction, function () {
     //require_once("view/Login.php");
@@ -175,10 +182,8 @@ Router::route_auth("GET", "Terms", $authFunction, function () {
     //require_once("view/Terms.php");
     layoutSetContent("view/Terms.php");
 });
-Router::route_auth("GET", "TileTest", $authFunction, function () {
-    //require_once("view/TileTest.php");
-    layoutSetContent("view/TileTest.php");
-});
+
+
 
 Router::route("GET", "ForgotPasswordGet", function () {
     layoutSetContent("ForgotPasswordGet.php");
@@ -187,11 +192,12 @@ Router::route("GET", "ForgotPasswordGet", function () {
 Router::route("POST", "ForgotPasswordGet", function () {
     $universityDAO = new UniversityDAO();
     $university = $universityDAO->findByEmail($_POST["email"]);
+    $to= $_POST["email"];
     $subject = "ForgotPassword";
 
-    $content = "Hi " . $university->getOrganization() . " \n Please use this link to reset your password "
+    $content = "Hi " .$university->getOrganization(). " \n Please use this link to reset your password "
         . "https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id=" . $university->getIDuniversity();
-    EmailServiceClient::sendEmail("tim.vandijke@gmx.ch", $subject, $content);
+    EmailServiceClient::sendEmail($to, $subject, $content);
     Router::redirect("/index");
 });
 
