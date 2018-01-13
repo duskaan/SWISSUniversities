@@ -28,8 +28,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Course ID</th>
                 <th>Name</th>
+                <th>Organization</th>
                 <th>Startdate</th>
                 <th>Discipline</th>
                 <th>Degree</th>

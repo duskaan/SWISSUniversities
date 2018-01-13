@@ -44,7 +44,7 @@
                         <option value="MAS" selected="">MAS</option>
                         <option value="MSc">MSc</option>
                         <option value="DAS">DAS</option>
-                        <option value="CAS">MAS</option>
+                        <option value="CAS">CAS</option>
                     </select>
                 </div>
             </div>
