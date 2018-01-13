@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: andreas.martin
+ * User: Tim van Dijke
  * Date: 05.11.2017
  * Time: 14:44
  */
