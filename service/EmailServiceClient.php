@@ -52,13 +52,13 @@ class EmailServiceClient
             }
           ],
           "from": {
-            "email": "test@example.com",
-            "name": "Example User"
+            "email": "stefan_sigi@hotmail.de",
+            "name": "Swiss Universities Portal"
           },
           "subject": "subject",
           "content": [
             {
-              "type": "text/plain",
+              "type": "text/html",
               "value": "value"
             }
           ]
@@ -77,7 +77,7 @@ class EmailServiceClient
           ],
           "from": {
             "email": "test@example.com",
-            "name": "example user"
+            "name": "Swiss Universities Portal"
           },
           "subject": "Sending with sendgrid is fun",
           "content": [
