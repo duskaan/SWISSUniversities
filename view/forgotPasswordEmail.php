@@ -37,7 +37,7 @@ $this->university
     </tr>
     </tbody>
 </table>
-<img src="https://swissstudyportal.herokuapp.com/assets/img/Logo_w_text_small.png" id="brand"
+<img src="https://swissstudyportal.herokuapp.com/assets/img/Logo.png" id="brand"
      style="padding-top:0px;margin-top:9px;margin-left:6px;size:100px"></a>
 </body>
 </html>
