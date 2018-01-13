@@ -75,7 +75,7 @@ SwissStudyPortal is a portal designed for students and universities. It allows u
  
  ### Data Access Model
  
- ![](images/Data-Access-Model.PNG)
+ ![](images/data-access-model.PNG)
  
 ## Implementation
 ### Stage 1: Structure
