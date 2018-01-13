@@ -51,10 +51,6 @@ global $course;
                         </option>
                         <option value="Business">Business</option>
                         <option value="Social">Social</option>
-                        <option value="">Ticino</option>
-                        <option value="">Graubunden</option>
-                        <option value="">Berne</option>
-                        <option value="">Central Switzerland</option>
                     </select>
                 </div>
             </div>
@@ -77,8 +73,6 @@ global $course;
                         <option value="CAS">CAS</option>
                         <option value="MAS">MAS</option>
                         <option value="DAS">DAS</option>
-                        <option value="">Berne</option>
-                        <option value="">Central Switzerland</option>
                     </select>
                 </div>
             </div>
