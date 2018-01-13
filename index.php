@@ -88,6 +88,7 @@ Router::route("POST", "/login", function () {
             $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
             $_SESSION["universityLogin"]["email"] = $email;
             $_SESSION["universityLogin"]["id"] = $university->getIDuniversity();
+            session_id($university->getIDuniversity());
             if (password_needs_rehash($university->getPassword(), PASSWORD_DEFAULT)) {
                 $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                 $universityDAO->update($university);
