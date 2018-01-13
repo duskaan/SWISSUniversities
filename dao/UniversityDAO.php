@@ -6,15 +6,16 @@ use domain\University;
 
 /**
  * @access public
- * @author Tim van Dijke
+ * @author andreas.martin
  */
 class UniversityDAO extends BasicDAO {
 
 	/**
 	 * @access public
-	 * @param University university
-	 * @ParamType university University
-
+	 * @param Agent agent
+	 * @return Agent
+	 * @ParamType agent Agent
+	 * @ReturnType Agent
 	 */
 	public function create(University $university) {
         session_regenerate_id();
@@ -36,10 +37,10 @@ class UniversityDAO extends BasicDAO {
 
 	/**
 	 * @access public
-	 * @param String University
-	 * @return University
-	 * @ParamType University
-	 * @ReturnType University
+	 * @param int agentId
+	 * @return Agent
+	 * @ParamType agentId int
+	 * @ReturnType Agent
 	 */
 	public function read($universityID) {
         $stmt = $this->pdoInstance->prepare('
@@ -50,9 +51,11 @@ class UniversityDAO extends BasicDAO {
     }
 
 	/**
-     * @access public
-     * @param University University
-     * @ParamType University
+	 * @access public
+	 * @param Agent agent
+	 * @return Agent
+	 * @ParamType agent Agent
+	 * @ReturnType Agent
 	 */
 	public function update(University $university) {
         $stmt = $this->pdoInstance->prepare('
