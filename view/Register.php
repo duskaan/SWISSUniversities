@@ -3,7 +3,7 @@
         <div class="container">
             <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
                 <li><a href="index.php"><span>Home</span></a></li>
-                <li class="active"><span>Login </span></li>
+                <li class="active"><span>Register </span></li>
             </ol>
         </div>
     </div>

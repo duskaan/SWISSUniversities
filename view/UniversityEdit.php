@@ -7,6 +7,14 @@
  */
 global $university;
 ?>
+    <div style="background-color:rgba(19,116,177,0.35);">
+        <div class="container">
+            <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
+                <li><a href="index.php"><span>Home</span></a></li>
+                <li class="active"><span>Edit credentials </span></li>
+            </ol>
+        </div>
+    </div>
     <div class="container">
         <div class="page-header">
             <h2 class="text-center">A <strong>course</strong>. </h2></div>
@@ -14,14 +22,14 @@ global $university;
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><span>ID </span></div>
-                    <input class="form-control" type="text" name="id" readonly=""
+                    <input class="form-control" type="text" name="id" readonly="" style="width:218px"
                            value="<?php echo !empty($university->getIDuniversity()) ? $university->getIDuniversity() : ''; ?>">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><span>Organization </span></div>
-                    <input class="form-control" type="text" name="organization"
+                    <input class="form-control" type="text" name="organization" style="width:350px"
                            value="<?php echo !empty($university->getOrganization()) ? $university->getOrganization() : ''; ?>"
                            required>
                 </div>
@@ -30,7 +38,7 @@ global $university;
                 <div class="input-group">
                     <div class="input-group-addon"><span>Region </span></div>
                     <div class="col-md-6">
-                        <select class="region-select" name="region">
+                        <select class="region-select" name="region"  style="min-width:210px">
                             <option value="Central"
                             "<?php echo !empty($university->getRegion()) ? $university->getRegion() : ''; ?>
                             >Central</option>
@@ -48,7 +56,7 @@ global $university;
                 <div class="input-group">
                     <div class="input-group-addon"><span>Institute </span></div>
                     <div class="col-md-6">
-                        <select class="program-select" name="discipline" required>
+                        <select class="program-select" name="discipline"  style="min-width:200px" style="width:350px" required>
                             <option value="University of applied Science"
                                     selected="<?php echo !empty($university->getInstitute()) ? $university->getInstitute() : ''; ?>">
                                 University of Applied Science
@@ -61,7 +69,7 @@ global $university;
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><span>Description </span></div>
-                    <input class="form-control" type="text" name="description"
+                    <input class="form-control" type="text" name="description" style="width:550px"
                            value="<?php echo !empty($university->getDescription()) ? $university->getDescription() : ''; ?>"
                            required>
                 </div>
@@ -70,30 +78,15 @@ global $university;
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><span>Email </span></div>
-                    <input class="form-control" type="email" name="email" required
+                    <input class="form-control" type="email" name="email" required style="width:350px"
                            value="<?php echo !empty($university->getEmail()) ? $university->getEmail() : ''; ?>">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><span>Password </span></div>
-                    <input class="form-control" type="password" name="password" placeholder="Password" required>
-                </div>
+            <div class="btn-group" role="group">
+                <button class="btn btn-default" type="submit"><i class="fa fa-save"></i></button>
+
             </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><span>Repeat Password </span></div>
-
-                    <input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)"
-                           required>
-                </div>
-            </div>
-
-    <div class="btn-group" role="group">
-        <button class="btn btn-default" type="submit"><i class="fa fa-save"></i></button>
-
-    </div>
-    </form>
+        </form>
     </div>
 <?php
 /**

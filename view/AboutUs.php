@@ -1,6 +1,6 @@
     <div style="background-color:rgba(19,116,177,0.35);">
         <div class="container">
-            <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
+            <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255)">
                 <li><a><span>Home</span></a></li>
                 <li><a><span>Library</span></a></li>
                 <li><a><span>Data</span></a></li>

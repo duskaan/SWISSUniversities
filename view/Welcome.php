@@ -9,13 +9,13 @@ use dao\CourseDAO;
 use service\EmailServiceClient;
 ?>
 <div style="background-color:rgba(19,116,177,0.35);">
-        <div class="container">
-            <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
-                <li><a href="index.php"><span>Home</span></a></li>
-                <li class="active"><span>Registration </span></li>
-            </ol>
-        </div>
+    <div class="container">
+        <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
+            <li><a href="index.php"><span>Home</span></a></li>
+            <li class="active"><span>Registration </span></li>
+        </ol>
     </div>
+</div>
 <div class="container">
     <div class="page-header">
         <h2 class="text-center"><strong>Welcome <?php echo $_SESSION["universityLogin"]["organization"]; ?>.</strong></h2>
@@ -30,10 +30,10 @@ use service\EmailServiceClient;
 
         if(EmailServiceClient::sendEmail($to,$subject,$message))
         {
-            echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
+        echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
 
-           ?>
-            </h3><br>
+        ?>
+    </h3><br>
     <h4>Your information:</h4>
     <table class="table">
         <thead>
@@ -48,15 +48,15 @@ use service\EmailServiceClient;
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><?php echo $_SESSION["universityLogin"]["organization"]; ?> </td>
-                <td><?php echo $_SESSION["universityLogin"]["region"]; ?> </td>
-                <td><?php echo $_SESSION["universityLogin"]["description"]; ?> </td>
-                <td><?php echo $_SESSION["universityLogin"]["institute"]; ?> </td>
-                <td><?php echo $_SESSION["universityLogin"]["email"]; ?> </td>
-                <td><?php echo $_SESSION["universityLogin"]["id"];?></td>
+        <tr>
+            <td><?php echo $_SESSION["universityLogin"]["organization"]; ?> </td>
+            <td><?php echo $_SESSION["universityLogin"]["region"]; ?> </td>
+            <td><?php echo $_SESSION["universityLogin"]["description"]; ?> </td>
+            <td><?php echo $_SESSION["universityLogin"]["institute"]; ?> </td>
+            <td><?php echo $_SESSION["universityLogin"]["email"]; ?> </td>
+            <td><?php echo $_SESSION["universityLogin"]["id"];?></td>
 
-            </tr>
+        </tr>
         </tbody>
     </table><br>
     <h4><strong>To add, edit and delete courses, please click <a href="CourseOverview">here</a>.</strong></h4>
@@ -76,7 +76,7 @@ use service\EmailServiceClient;
         </div>
     </div>
     <?php }
-        else {
-            echo ("<p>The mail could not be sent to your account</p>");
-        }?>
+    else {
+        echo ("<p>The mail could not be sent to your account</p>");
+    }?>
 </div>

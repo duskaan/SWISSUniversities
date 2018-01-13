@@ -42,7 +42,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li role="presentation"><a href="index">Home </a></li>
                     <?php if (isset($_SESSION["universityLogin"])) {?>
-                    <li role="presentation"><a href="CourseOverview">course Overview </a></li>
+                    <li role="presentation"><a href="CourseOverview">Course Overview </a></li>
                     <li role="presentation"><a href="university-edit">Edit credentials </a></li>
                     <li role="presentation"><a href="logout">Logout </a></li>
                     <?php }else{?>
