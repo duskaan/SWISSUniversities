@@ -3,28 +3,27 @@
 namespace dao;
 
 use domain\Course;
-use domain\University;
-use http\HTTPException;
+use domain\filteredCourse;
+
 
 /**
  * @access public
- * @author andreas.martin
+ * @author Tim van Dijke
  */
 class CourseDAO extends BasicDAO {
 
-	/**
-	 * @access public
-	 * @param Customer customer
-	 * @return Customer
-	 * @ParamType customer Customer
-	 * @ReturnType Customer
-	 */
+    /**
+     * @access public
+     * @param Course $course
+     * @internal param Course $Course
+     * @ParamType Course course
+     */
 	public function create(Course $course) {
         $stmt = $this->pdoInstance->prepare('
             INSERT INTO course ("FK_university", name, startdate, discipline, description, degree, attendance, duration, "language", link)
             VALUES (:FK_university, :name, :startdate, :discipline, :description, :degree, :attendance, :duration, :language, :link)');
-        $stmt->bindValue(':FK_university', $course->getUniversityID());
-        //$stmt->bindValue(':FK_university', session_id());
+        //$stmt->bindValue(':FK_university', $course->getUniversityID());
+        $stmt->bindValue(':FK_university', session_id());
         $stmt->bindValue(':name', $course->getName());
         $stmt->bindValue(':startdate', $course->getStartdate());
         $stmt->bindValue(':discipline', $course->getDiscipline());
@@ -39,10 +38,10 @@ class CourseDAO extends BasicDAO {
 
 	/**
 	 * @access public
-	 * @param int customerId
+	 * @param int CourseId
 	 * @return Course
-	 * @ParamType customerId int
-	 * @ReturnType Customer
+	 * @ParamType courseID int
+	 * @ReturnType Course
 	 */
 	public function read($courseId) {
         $stmt = $this->pdoInstance->prepare('
@@ -59,10 +58,8 @@ class CourseDAO extends BasicDAO {
 
 	/**
 	 * @access public
-	 * @param Customer customer
-	 * @return Customer
-	 * @ParamType customer Customer
-	 * @ReturnType Customer
+	 * @param Course course
+	 * @ParamType course Course
 	 */
 	public function update(Course $course) {
         $stmt = $this->pdoInstance->prepare('
@@ -92,8 +89,8 @@ class CourseDAO extends BasicDAO {
 
 	/**
 	 * @access public
-	 * @param Customer customer
-	 * @ParamType customer Customer
+	 * @param Course course
+	 * @ParamType course Course
 	 */
 	public function delete(Course $course) {
         $stmt = $this->pdoInstance->prepare('
@@ -108,7 +105,7 @@ class CourseDAO extends BasicDAO {
 	 * @access public
 	 * @param int universityId
 	 * @return Course[]
-	 * @ParamType agentId int
+	 * @ParamType universityID int
 	 * @ReturnType Course[]
 	 */
 	public function findByUniversity($universityID) {
@@ -120,6 +117,13 @@ class CourseDAO extends BasicDAO {
         //return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
+    /**
+     * @access public
+     * @param $filters filteredCourse
+     * @return Course[]
+     * @ParamType filters filteredCourse
+     * @ReturnType Course[]
+     */
     public function findByFilter($filters) {
         $stmt = $this->pdoInstance->prepare('
             SELECT course.link, course.name, course.description, course.discipline, university.organization, course.startdate, course.degree, course.attendance, course.duration
@@ -140,9 +144,14 @@ class CourseDAO extends BasicDAO {
         if (!empty($result)){
             return $result;
         }
-
-
     }
+    /**
+     * @access public
+     * @param course Course
+     * @return Course
+     * @ParamType course Course
+     * @ReturnType Course[]
+     */
     public function getID(Course $course)
     {
         $stmt = $this->pdoInstance->prepare('
