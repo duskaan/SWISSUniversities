@@ -39,14 +39,13 @@ class Config
             self::$config["pdf"]["hypdf-user"] = $pdfConfig["user"];
 
         }elseif (isset($_ENV["HYPDF_USER"])) {
-            $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
-            self::$config["pdf"]["hypdf-user"] = $pdfConfig["user"];
+            self::$config["pdf"]["hypdf-user"] = getenv(("HYPDF_USER"));
         }
         if (file_exists(self::$iniFile)) {
             $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
             self::$config["pdf"]["hypdf-password"] = $pdfConfig["password"];}
         elseif (isset($_ENV["HYPDF_PASSWORD"])) {
-            self::$config["pdf"]["hypdf-password"] = $pdfConfig["password"];;
+            self::$config["pdf"]["hypdf-password"] = getenv(("HYPDF_PASSWORD"));
         }
     }
 
