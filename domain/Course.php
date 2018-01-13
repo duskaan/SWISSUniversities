@@ -199,7 +199,7 @@ class Course
      * @AssociationType int
      * @AssociationMultiplicity 1
      */
-    private $FK_university;
+    protected $FK_university;
 
     /**
      * @access public

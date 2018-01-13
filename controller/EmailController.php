@@ -32,9 +32,5 @@ class EmailController
         return EmailServiceClient::sendEmail($email, "Invoice for new Course",$content);
         //return EmailServiceClient::sendEmail($email, "Invoice for new Course", "teset");
     }
-    public static function generateContent(Course $course){
-        $universityDao = new UniversityDAO();
-        $university= $universityDao->findByID($course->getFKUniversity());
-        return $content = PDFController::generatePDFCustomers($course,$university);
-    }
+
 }

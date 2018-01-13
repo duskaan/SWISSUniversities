@@ -8,7 +8,7 @@
 
 namespace controller;
 
-use dao\CourseDAO;
+use domain\University;
 use dao\UniversityDAO;
 use service\CustomerServiceImpl;
 use view\TemplateView;
@@ -27,5 +27,10 @@ class PDFController
         header("Content-Type: application/pdf", NULL, 200);
         echo $result;
         return $result;
+    }
+    public static function generateContent($course){
+        $universityDao = new UniversityDAO();
+        $university= $universityDao->findByID($course->getFKuniversity());
+        return $content = PDFController::generatePDFCustomers($course,$university);
     }
 }

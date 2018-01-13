@@ -151,7 +151,7 @@ Router::route_auth("GET", "customerListPDF", $authFunction, function () {
 Router::route("GET", "PDF", function () {
     $courseDAO = new CourseDAO();
     $course = $courseDAO->read($_GET["id"]);
-    echo EmailController::generateContent($course);
+    echo PDFController::generateContent($course);
     header("Content-Type: application/pdf", NULL, 200);
     layoutSetContent("/index");
     /*

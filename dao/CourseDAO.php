@@ -41,7 +41,7 @@ class CourseDAO extends BasicDAO {
 	/**
 	 * @access public
 	 * @param int customerId
-	 * @return Customer
+	 * @return Course
 	 * @ParamType customerId int
 	 * @ReturnType Customer
 	 */
@@ -50,7 +50,12 @@ class CourseDAO extends BasicDAO {
             SELECT * FROM course WHERE "ID_course" = :id;');
         $stmt->bindValue(':id', $courseId);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];
+
+        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];
+        if(!empty($result)){
+            return $result;
+        }
+        //return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
 	/**
