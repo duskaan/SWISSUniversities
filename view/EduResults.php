@@ -35,6 +35,7 @@
                 <th>Degree</th>
                 <th>Attendance</th>
                 <th>Duration</th>
+                <th>Description </th>
             </tr>
             </thead>
             <tbody>
