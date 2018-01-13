@@ -141,7 +141,7 @@ class CourseDAO extends BasicDAO {
         if (!empty($result)){
             return $result;
         }
-        //return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course");
+
 
     }
     public function getID(Course $course)

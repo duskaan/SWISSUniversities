@@ -17,9 +17,7 @@ use dao\CourseDAO;
 use dao\UniversityDAO;
 use domain\filteredCourse;
 use database\Database;
-use service\EmailServiceClient;
 use controller\EmailController;
-use service\PDFServiceClient;
 use controller\PDFController;
 
 
@@ -122,9 +120,7 @@ Router::route("POST", "EduResults", function () {
     } else {
         router::redirect("/EduResults?match=false");
     }
-    //require_once("view/EduResults.php");
     layoutSetContent("view/EduResults.php");
-    //Router::redirect("/EduResults");
 });
 
 Router::route_auth("GET", "/logout", $authFunction, function () {
@@ -142,15 +138,12 @@ Router::route("GET", "index", function () {
 });
 
 Router::route("GET", "AboutUs", function () {
-    //require_once("view/AboutUs.php");
     layoutSetContent("view/AboutUs.php");
 });
 Router::route("GET", "ForgotPassword", function () {
-    //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
 });
 Router::route_auth("GET", "customerListPDF", $authFunction, function () {
-    //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/customerListPDF.php");
 });
 Router::route("GET", "PDF", function () {
@@ -159,11 +152,6 @@ Router::route("GET", "PDF", function () {
     echo PDFController::generateContent($course);
     header("Content-Type: application/pdf", NULL, 200);
     layoutSetContent("/index");
-    /*
-        global $results;
-        echo $results; //todo create the pdf here instead of trying to send it. and give the IDCourse with pdf so that i know which course
-        header("Content-Type: application/pdf", NULL, 200);*/
-
 });
 Router::route("GET", "Contact", function () {
     //require_once("view/Contact.php");
@@ -177,16 +165,13 @@ Router::route("POST", "Contact", function () {
     Router::redirect("/index");
 });
 Router::route("GET", "Disclaimer", function () {
-    //require_once("view/Disclaimer.php");
     layoutSetContent("view/Disclaimer.php");
 });
 Router::route("GET", "EduProgram", function () {
-    //require_once("view/EduProgram.php");
     layoutSetContent("view/EduProgram.php");
 });
 
 Router::route("GET", "EduResults", function () {
-    //require_once("view/EduProgram.php");
     if (isset($_GET["match"])) {
         layoutSetContent("view/EduPrograms.php");
     } else {
@@ -195,12 +180,10 @@ Router::route("GET", "EduResults", function () {
 });
 
 Router::route("GET", "Privacy", function () {
-    //require_once("view/Privacy.php");
     layoutSetContent("view/Privacy.php");
 });
 
 Router::route("GET", "Terms", function () {
-    //require_once("view/Terms.php");
     layoutSetContent("view/Terms.php");
 });
 
@@ -210,20 +193,6 @@ Router::route("GET", "ForgotPasswordGet", function () {
 });
 
 Router::route("POST", "ForgotPasswordGet", function () {
-    /*$universityDAO = new UniversityDAO();
-    $university = $universityDAO->findByEmail($_POST["email"]);
-    $to = $_POST["email"];
-    $subject = "ForgotPassword";
-
-
-    $content = "Hi " . $university->getOrganization() . "\r\n Please use this link to reset your password "
-        . "https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id=" . $university->getIDuniversity();
-    if(EmailServiceClient::sendEmail($to, $subject, $content)){
-        Router::redirect("/index");
-    }else{
-        Router::redirect("/ForgotPasswordGet");
-    }*/
-
     if(EmailController::sendForgotPassword($_POST["email"])){
         Router::redirect("/index");
     }else{
@@ -241,7 +210,6 @@ Router::route("GET", "ForgotPasswordSet", function () {
     $stmt->execute();
     global $university;
     $university = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
-    //require_once("view/ForgotPasswordSet.php");
     layoutSetContent("view/ForgotPasswordSet.php");
 });
 Router::route("POST", "ForgotPasswordSet", function () {
@@ -257,8 +225,6 @@ Router::route("POST", "ForgotPasswordSet", function () {
 });
 
 Router::route_auth("GET", "CourseOverview", $authFunction, function () {
-    //require("database/database.php");
-
     $courseDAO = new CourseDAO();
     $id = $_SESSION["universityLogin"]["id"];
     if (is_null($id)) {
@@ -266,17 +232,6 @@ Router::route_auth("GET", "CourseOverview", $authFunction, function () {
     }
     global $courses;
     $courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-    //$pdoInstance = Database::connect();
-    /** TODO: create a prepared SQL statement to retrieve all customers */
-    /*$stmt = $pdoInstance->prepare('
-        SELECT * FROM course WHERE "FK_university" = :id ORDER BY "ID_course";');
-    $stmt->bindValue(':id', $_SESSION["universityLogin"]["id"]);
-    $stmt->execute();
-    $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // TODO: extend the customers.php file to show the data
-    */
-    //$courses = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);*//*
-    //require_once("view/CourseOverview.php");
     layoutSetContent("view/CourseOverview.php");
 
 });
@@ -316,14 +271,6 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     global $course;
     $course = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     layoutSetContent("courseEdit.php");
-
-    /*
-    $id = $_GET["id"];
-    global $course;
-    $courseDAO = new CourseDAO();
-    $course = $courseDAO->findByUniversity($_SESSION["universityLogin"]["id"]);
-    $course = WECRMServiceImpl::getInstance()->readCustomer($id);
-    layoutSetContent("courseEdit.php");*/
 });
 
 Router::route_auth("GET", "/course-delete", $authFunction, function () {
@@ -360,16 +307,9 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
-    //$course = $courseDAO->getID($course);
-        //PDFController::generatePDFCustomers($course);
-
-
         EmailController::sendInvoice($courseDAO->getID($course));
-        //Router::redirect("/customerListPDF");
-        //WECRMServiceImpl::getInstance()->createCustomer($course);
     } else {
         $courseDAO->update($course);
-        //WECRMServiceImpl::getInstance()->updateCustomer($course);
     }
     Router::redirect("/CourseOverview");
 });
@@ -378,9 +318,6 @@ Router::route_auth("GET", "/course/email", $authFunction, function () {
     Router::redirect("/");
 });
 
-Router::route_auth("GET", "/course/pdf", $authFunction, function () {
-    //PDFController::generatePDFCustomers();
-});
 try {
     Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO']);
 } catch (HTTPException $exception) {
