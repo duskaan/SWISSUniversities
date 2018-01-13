@@ -7,7 +7,7 @@
  */
 
 ?>
-<div style="background-color:rgba(19,116,177,0.35);">
+<div style="background-color:rgba(19,116,177,0.35); " >
     <div class="container">
         <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
             <li><a href="index.php"><span>Home</span></a></li>
@@ -15,7 +15,7 @@
         </ol>
     </div>
 </div>
-<form class="container">
+<form class="container" style="padding-bottom: 80px" >
     <div class="page-header">
         <h2 class="text-center">Available <strong>courses</strong>.</h2></div>
     <h4 class="text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
@@ -60,15 +60,15 @@
                 <td><?php echo $filteredCourse["duration"]; ?> </td>
                 <td><?php echo $filteredCourse["description"]; ?> </td>
 
-                <td> <a class="btn btn-primary" role="button" href="<?php echo $filteredCourse["link"] ?>" >details</a></td>
+                <td> <a class="btn btn-primary"  role="button" href="<?php echo $filteredCourse["link"] ?>" >details</a></td>
 
             </tr>
 
 <?php endforeach; }?>
-</tbody>
+</tbody >
 
-</table>
-</div>
+</table >
+</div >
 
 <div class="modal fade" role="dialog" tabindex="-1" id="confirm-modal">
     <div class="modal-dialog modal-sm" role="document">
