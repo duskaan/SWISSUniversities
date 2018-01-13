@@ -169,6 +169,13 @@ Router::route("GET", "Contact", function () {
     //require_once("view/Contact.php");
     layoutSetContent("view/Contact.php");
 });
+Router::route("POST", "Contact", function () {
+    $name = $_POST["name"];
+    $email= $_POST["email"];
+    $message = $_POST["message"];
+    EmailController::sendContact($name, $email, $message);
+    Router::redirect("/index");
+});
 Router::route("GET", "Disclaimer", function () {
     //require_once("view/Disclaimer.php");
     layoutSetContent("view/Disclaimer.php");

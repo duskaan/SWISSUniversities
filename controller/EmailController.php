@@ -64,5 +64,12 @@ class EmailController
             Router::redirect("/ForgotPasswordGet");
         }
     }
+    public static function sendContact($name, $to, $message){
+        $contactView = new TemplateView("contactEmail.php");
+        $contactView->name= $name;
+        $contactView->message= $message;
+        EmailServiceClient::sendEmail($to,"contact form Swiss Study Portal",$contactView->render());
+        EmailServiceClient::sendEmail("tim.vandijke@gmx.ch","contact form Swiss Study Portal",$contactView->render());
+    }
 
 }

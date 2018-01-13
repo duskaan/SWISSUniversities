@@ -1,9 +1,8 @@
     <div style="background-color:rgba(19,116,177,0.35);">
         <div class="container">
             <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255)">
-                <li><a><span>Home</span></a></li>
-                <li><a><span>Library</span></a></li>
-                <li><a><span>Data</span></a></li>
+                <li><a href="index"><span>Home</span></a></li>
+                <li><a><span>AboutUs</span></a></li>
             </ol>
         </div>
     </div>
@@ -15,8 +14,8 @@
             sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
         <iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/aIS_rGyOYlE"></iframe>
     </div>
-    <div class="dark-section" style="background-color:rgb(238,238,238);">
-        <div class="container site-section" id="welcome">
+    <div class="dark-section"  style="background-color:rgb(238,238,238);"id="founders">
+        <div class="container site-section" >
             <h1>Meet the founders</h1>
             <div class="row">
                 <div class="col-md-4" style="padding-top:15px;padding-bottom:15px;">

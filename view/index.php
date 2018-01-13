@@ -24,15 +24,7 @@
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
             sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
     </div>
-    <div class="dark-section">
-        <div class="container site-section" id="why">
-            <h1>What Discipline are you looking for? (under construction)..</h1>
-            <div class="row" style="height:153px;">
-                <div class="col-md-3 item" id="infobox"><i class="glyphicon glyphicon-music"></i>
-                    <h2>Agriculture &amp; Forestry</h2></div>
-            </div>
-        </div>
-    </div>
+
     <div class="container site-section" id="welcomed">
         <h1>Spotlight </h1>
         <p style="margin-top:20px;margin-bottom:30px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no

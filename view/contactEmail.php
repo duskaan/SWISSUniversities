@@ -1,15 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Tim
- * Date: 13.01.2018
- * Time: 20:49
+ * User: andreas.martin
+ * Date: 13.09.2017
+ * Time: 16:59
  */
 use view\TemplateView;
 
-$this->university;
-$this->id;
 $this->name;
+$this->message;
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,19 +16,18 @@ $this->name;
 <table class="table">
 
     <tbody>
-    <tr>Hi <?php echo TemplateView::noHTML($university->getOrganization()) ?>  </tr>
-
+    <tr>Hi <?php echo TemplateView::noHTML($name) ?>  </tr>
     <tr>
-        <td>Please use the link bellow to view your new invoice for the course <?php echo TemplateView::noHTML($name) ?></td>
+        <td>Thank you for contacting the Swiss Study Portal</td>
+    </tr>
+    <tr>
+        <td>The message sent to Swiss Study Portal is: </td>
     </tr>
 
     <tr>
-        <td>https://swissstudyportal.herokuapp.com/PDF?id=<?php echo TemplateView::noHTML($id);?></td>
+        <td><?php echo TemplateView::noHTML($message) ?></td>
     </tr>
 
-    <tr>
-        <td>The invoice is to be payed within 30 days</td>
-    </tr>
     <tr>
         <td>Enjoy our website and kind regards,</td>
     </tr>
