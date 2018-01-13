@@ -85,7 +85,7 @@
 
 
     <div class="btn-group" role="group">
-        <a class="btn btn-default" role="button" href="course-create" > <i class="fa fa-plus-square-o"></i></a>
+        <a class="btn btn-default" role="button" href="course-create" style="padding-bottom: 100px" > <i class="fa fa-plus-square-o"></i></a>
     </div>
     <?php } ?>
 </div>
