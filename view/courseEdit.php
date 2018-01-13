@@ -126,7 +126,7 @@ global $course;
                        value="<?php echo !empty($course["link"]) ? $course["link"] : ''; ?>" required>
             </div>
         </div>
-        <div class="btn-group" role="group">
+        <div class="btn-group" role="group" style="padding-bottom: 50px">
             <button class="btn btn-default" type="submit"><i class="fa fa-save"></i></button>
 
         </div>

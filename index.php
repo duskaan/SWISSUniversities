@@ -203,14 +203,21 @@ Router::route("GET", "ForgotPasswordGet", function () {
 });
 
 Router::route("POST", "ForgotPasswordGet", function () {
-    $universityDAO = new UniversityDAO();
+    /*$universityDAO = new UniversityDAO();
     $university = $universityDAO->findByEmail($_POST["email"]);
     $to = $_POST["email"];
     $subject = "ForgotPassword";
 
+
     $content = "Hi " . $university->getOrganization() . "\r\n Please use this link to reset your password "
         . "https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id=" . $university->getIDuniversity();
     if(EmailServiceClient::sendEmail($to, $subject, $content)){
+        Router::redirect("/index");
+    }else{
+        Router::redirect("/ForgotPasswordGet");
+    }*/
+
+    if(EmailController::sendForgotPassword($_POST["email"])){
         Router::redirect("/index");
     }else{
         Router::redirect("/ForgotPasswordGet");

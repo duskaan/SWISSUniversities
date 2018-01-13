@@ -22,7 +22,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input class="form-control" type="text" name="failed" readonly=""
-                       value="<?php echo ($_GET["failed"]=="mail") ? "Enter a valid Email" : "Enter an valid Password" ?>">
+                       value="<?php echo ($_GET["failed"]=="mail") ? "Invalid Email" : "Invalid Password" ?>">
         </div>
         </div>
         <div class="form-group">

@@ -7,6 +7,7 @@
  */
 use dao\CourseDAO;
 use service\EmailServiceClient;
+use controller\EmailController;
 ?>
 <div style="background-color:rgba(19,116,177,0.35);">
     <div class="container">
@@ -23,10 +24,10 @@ use service\EmailServiceClient;
     <h3 class="text-center"><?php
         $to = $_SESSION["universityLogin"]["email"];
         $subject = 'Registering for Swiss Universities';
-        $message = 'Hi '.$_SESSION["universityLogin"]["email"]."\r\n". 'Thank you for registering at Swiss Universities ';
-
-
-        if(EmailServiceClient::sendEmail($to,$subject,$message))
+        //$message = 'Hi '.$_SESSION["universityLogin"]["organization"]."\r\n". 'Thank you for registering at Swiss Universities ';
+        $org = $_SESSION["universityLogin"]["organization"];
+        //EmailServiceClient::sendEmail($to,$subject,$message)
+        if(EmailController::sendRegistration($to,$org))
         {
         echo ("<p>A confirmation e-mail has been sent to your e-mail address.</p>");
 
@@ -57,22 +58,9 @@ use service\EmailServiceClient;
         </tr>
         </tbody>
     </table><br>
-    <h4><strong>To add, edit and delete courses, please click <a href="CourseOverview">here</a>.</strong></h4>
+    <h4 style="padding-bottom: 50px"><strong>To add, edit and delete courses, please click <a href="CourseOverview">here</a>.</strong></h4>
     <br><br><br>
-    <div class="modal fade" role="dialog" tabindex="-1" id="confirm-modal">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Deletion of a <strong>customer</strong>.</h4></div>
-                <div class="modal-body">
-                    <p>Do you want to delete a customer?</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel </button><a class="btn btn-primary" role="button" href="#">Delete </a></div>
-            </div>
-        </div>
-    </div>
+
     <?php }
     else {
         echo ("<p>The mail could not be sent to your account</p>");
