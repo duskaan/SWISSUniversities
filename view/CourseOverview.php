@@ -22,7 +22,7 @@
     <?php
     global $courses;
     if(empty($courses)){
-        echo("<h3>You have no records yet. Press here to add a course: <a class=\"btn btn-default\" role=\"button\" href=\"course-create\"> <i class=\"fa fa-plus-square-o\"></i></a></h3> ");
+        echo("<h3>You have no records yet. Press here to add a course: <a class=\"btn btn-default\" role=\"button\" href=\"course-create\" style=\"padding-bottom: 100px\" > <i class=\"fa fa-plus-square-o\"></i></a></h3> ");
         }else{
 
 
