@@ -18,13 +18,13 @@ class EmailServiceClient
 
         $jsonObj = self::createEmailJSONObj();
         //$jsonObj = self::createEmailJSONObj2();
-       ///$jsonObj->personalizations[0]->to[0]->email = $toEmail;
-        $jsonObj->personalizations[0]->to[0]->email = 'test@example.com';
-        //$jsonObj->subject = $subject;
-        $jsonObj->subject = "Sending with SendGrid is Fun";
+       $jsonObj->personalizations[0]->to[0]->email = $toEmail;
+        //$jsonObj->personalizations[0]->to[0]->email = 'test@example.com';
+       $jsonObj->subject = $subject;
+        //$jsonObj->subject = "Sending with SendGrid is Fun";
 
-        //$jsonObj->content[0]->value = $htmlData;
-        $jsonObj->content[0]->value = "and easy to do anywhere, even with PHP";
+        $jsonObj->content[0]->value = $htmlData;
+        //$jsonObj->content[0]->value = "and easy to do anywhere, even with PHP";
 
 
         $options = ["http" => [
