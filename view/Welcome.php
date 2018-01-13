@@ -24,9 +24,7 @@ use service\EmailServiceClient;
         $to = $_SESSION["universityLogin"]["email"];
         $subject = 'Registering for Swiss Universities';
         $message = 'Hi '.$_SESSION["universityLogin"]["email"]."\r\n". 'Thank you for registering at Swiss Universities ';
-        $headers = 'From: tim.vandijke@gmx.ch' . "\r\n" .
-            'Reply-To: tim.vandijke@gmx.ch\'' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+
 
         if(EmailServiceClient::sendEmail($to,$subject,$message))
         {

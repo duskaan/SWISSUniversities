@@ -204,7 +204,7 @@ Router::route("POST", "ForgotPasswordGet", function () {
     $to = $_POST["email"];
     $subject = "ForgotPassword";
 
-    $content = "Hi " . $university->getOrganization() . " \n Please use this link to reset your password "
+    $content = "Hi " . $university->getOrganization() . "\r\n Please use this link to reset your password "
         . "https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id=" . $university->getIDuniversity();
     EmailServiceClient::sendEmail($to, $subject, $content);
     Router::redirect("/index");
