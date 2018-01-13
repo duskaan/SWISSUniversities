@@ -17,13 +17,15 @@ class EmailServiceClient
     public static function sendEmail($toEmail, $subject, $htmlData){
 
         $jsonObj = self::createEmailJSONObj();
-        $jsonObj->personalizations[0]->to[0]->email = $toEmail;
-        //$jsonObj->personalizations[0]->to[0]->email = 'test@example.com';
-        $jsonObj->subject = $subject;
-        //$jsonObj->subject = "Sending with SendGrid is Fun";
+        //$jsonObj = self::createEmailJSONObj2();
+       ///$jsonObj->personalizations[0]->to[0]->email = $toEmail;
+        $jsonObj->personalizations[0]->to[0]->email = 'test@example.com';
+        //$jsonObj->subject = $subject;
+        $jsonObj->subject = "Sending with SendGrid is Fun";
 
-        $jsonObj->content[0]->value = $htmlData;
-        //$jsonObj->content[0]->value = "and easy to do anywhere, even with PHP";
+        //$jsonObj->content[0]->value = $htmlData;
+        $jsonObj->content[0]->value = "and easy to do anywhere, even with PHP";
+
 
         $options = ["http" => [
             "method" => "POST",
@@ -50,14 +52,38 @@ class EmailServiceClient
             }
           ],
           "from": {
-            "email": "tim.vandijke@gmx.ch",
-            "name": "Swiss University Portal"
+            "email": "test@example.com",
+            "name": "Example User"
           },
           "subject": "subject",
           "content": [
             {
-              "type": "text/html",
+              "type": "text/plain",
               "value": "value"
+            }
+          ]
+        }');
+    }
+    protected static function createEmailJSONObj2(){
+        return json_decode('{
+          "personalizations": [
+            {
+              "to": [
+                {
+                  "email": "test@example.com"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "email": "test@example.com",
+            "name": "example user"
+          },
+          "subject": "Sending with sendgrid is fun",
+          "content": [
+            {
+              "type": "text/html",
+              "value": "and easy to do anywhere, even with php"
             }
           ]
         }');
