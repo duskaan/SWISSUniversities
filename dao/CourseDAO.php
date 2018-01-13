@@ -47,7 +47,7 @@ class CourseDAO extends BasicDAO {
 	 */
 	public function read($courseId) {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM course WHERE ID_course = :id;');
+            SELECT * FROM course WHERE "ID_course" = :id;');
         $stmt->bindValue(':id', $courseId);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];

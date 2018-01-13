@@ -95,7 +95,6 @@ Router::route("POST", "/login", function () {
                 $universityDAO->update($university);
             };
             Router::redirect("/CourseOverview");
-
         } else {
             Router::redirect("/Login");
         }

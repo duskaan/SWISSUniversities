@@ -87,6 +87,13 @@ class UniversityDAO extends BasicDAO {
             return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\University")[0];
         return null;
     }
+    /**
+     * @access public
+     * @param String id
+     * @return University
+     * @ParamType email String
+     * @ReturnType University
+     */
     public function findByID($id) {
         $stmt = $this->pdoInstance->prepare('
             SELECT * FROM university WHERE "ID_university" = :id ;');

@@ -38,7 +38,7 @@ class Config
             $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
             self::$config["pdf"]["hypdf-user"] = $pdfConfig["user"];
 
-        }elseif (isset($_ENV["hypdf_user"])) {
+        }elseif (isset($_ENV["HYPDF_USER"])) {
             $pdfConfig = parse_ini_file(self::$iniFile, true)["hypdf"];
             self::$config["pdf"]["hypdf-user"] = $pdfConfig["user"];
         }
