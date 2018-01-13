@@ -17,8 +17,8 @@ global $university;
     </div>
     <div class="container">
         <div class="page-header">
-            <h2 class="text-center">A <strong>course</strong>. </h2></div>
-        <form action="update" method="post">
+            <h2 class="text-center">Edit your <strong>University Credentials</strong>. </h2></div>
+        <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/university-edit" method="post">
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><span>ID </span></div>

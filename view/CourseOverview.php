@@ -86,8 +86,6 @@
 
     <div class="btn-group" role="group">
         <a class="btn btn-default" role="button" href="course-create"> <i class="fa fa-plus-square-o"></i></a>
-        <button class="btn btn-default" type="button"> <i class="fa fa-file-pdf-o"></i></button>
-        <button class="btn btn-default" type="button"> <i class="fa fa-envelope-o"></i></button>
     </div>
     <?php } ?>
 </div>

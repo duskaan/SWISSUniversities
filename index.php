@@ -86,22 +86,27 @@ Router::route("POST", "/login", function () {
     $university = $universityDAO->findByEmail($email);
     if (!empty($university)) {
         if (password_verify($_POST["password"], $university->getPassword())) {
+            //session_id($university->getIDuniversity());
             $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
             $_SESSION["universityLogin"]["email"] = $email;
             $_SESSION["universityLogin"]["id"] = $university->getIDuniversity();
-            session_id($university->getIDuniversity());
             if (password_needs_rehash($university->getPassword(), PASSWORD_DEFAULT)) {
                 $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                 $universityDAO->update($university);
             };
             Router::redirect("/CourseOverview");
         } else {
-            Router::redirect("/Login");
+            Router::redirect("/login?failed=password");
         }
     } else {
-        Router::redirect("/index");
+        Router::redirect("/login?failed=mail");
     }
 });
+Router::route("GET", "/login", function(){
+    layoutSetContent("view/loginFailed.php");
+});
+
+
 Router::route("POST", "EduResults", function () {
     $filter = new filteredCourse();
     $filter->setDiscipline($_POST["discipline"]);
@@ -299,7 +304,6 @@ Router::route_auth("GET", "/course-edit", $authFunction, function () {
     layoutSetContent("courseEdit.php");
 
     /*
-
     $id = $_GET["id"];
     global $course;
     $courseDAO = new CourseDAO();

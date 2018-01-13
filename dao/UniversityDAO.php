@@ -19,7 +19,6 @@ class UniversityDAO extends BasicDAO {
 	 */
 	public function create(University $university) {
         session_regenerate_id();
-
 	    $stmt = $this->pdoInstance->prepare('
         INSERT INTO university ("ID_university", organization,region,description,institute, email, password)
           VALUES(:ID, :organization,:region,:description,:institute,:email, :password);');

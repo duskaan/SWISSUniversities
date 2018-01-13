@@ -34,7 +34,6 @@
                         <li><a href="AboutUs" style="font-weight:normal;font-size:16px;">About SwissStudyPortal</a></li>
                         <li><a href="Contact" style="font-weight:normal;font-size:16px;">Contact Us</a></li>
                         <li style="font-weight:normal;"><a href="AboutUs" style="font-size:16px;">Team</a></li>
-                        <li><a href="AboutUs" style="font-weight:normal;font-size:16px;">Careers</a></li>
                     </ul>
                 </div>
                 <div class="col-md-12 col-sm-4 item social" style="padding-top:24px;padding-bottom:0px;"><a href="https://www.facebook.com/fhnw.ch"><i class="icon ion-social-facebook"></i></a><a href="https://www.linkedin.com/organization/50566"><i class="fa fa-linkedin"></i></a><a href="https://www.youtube.com/user/FHNWbusiness"><i class="fa fa-youtube-play"></i></a>

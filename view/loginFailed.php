@@ -1,3 +1,11 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tim
+ * Date: 13.01.2018
+ * Time: 18:24
+ */
+?>
 <div style="background-color:rgba(19,116,177,0.35);">
     <div class="container">
         <ol class="breadcrumb" style="margin-top:73px;margin-bottom:0px;padding-left:0px;color:rgb(255,255,255);">
@@ -8,19 +16,19 @@
 </div>
 
 <div class="login-dark">
-    <form method="post" form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/login">
+    <form method="get" form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/Login">
         <h2 class="sr-only">Login Form</h2>
-        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 
         <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="Email" required>
+            <div class="input-group">
+                <input class="form-control" type="text" name="failed" readonly=""
+                       value="<?php echo ($_GET["failed"]=="mail") ? "Enter a valid Email" : "Enter an valid Password" ?>">
+        </div>
         </div>
         <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password" required>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+            <button class="btn btn-primary btn-block" type="submit">Try again</button>
 
         </div>
         <a href="ForgotPasswordGet" class="forgot">Forgot your password?</a></form>
 </div>
+
