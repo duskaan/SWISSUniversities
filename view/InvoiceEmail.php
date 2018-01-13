@@ -7,7 +7,9 @@
  */
 use view\TemplateView;
 
-$this->university
+$this->university;
+$this->id;
+$this->name;
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,13 +20,16 @@ $this->university
     <tr>Hi <?php echo TemplateView::noHTML($university->getOrganization()) ?>  </tr>
 
     <tr>
-        <td>Please use the link bellow to set your new password</td>
+        <td>Please use the link bellow to view your new invoice for the course <?php echo TemplateView::noHTML($name) ?></td>
     </tr>
 
     <tr>
-        <td>https://swissstudyportal.herokuapp.com/ForgotPasswordSet?id=<?php echo TemplateView::noHTML($university->getIDuniversity());?></td>
+        <td>https://swissstudyportal.herokuapp.com/PDF?id=<?php echo TemplateView::noHTML($id);?></td>
     </tr>
 
+    <tr>
+        <td>The invoice is to be payed within 30 days</td>
+    </tr>
     <tr>
         <td>Enjoy our website and kind regards,</td>
     </tr>

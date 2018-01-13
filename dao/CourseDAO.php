@@ -171,10 +171,8 @@ class CourseDAO extends BasicDAO {
         $stmt->bindValue(':language', $course->getLanguage());
 
         $stmt->execute();
-        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];
-        if (!empty($result)) {
-            return $result;
-        }
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Course")[0];
+
     }
 }
 ?>

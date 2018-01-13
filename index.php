@@ -353,7 +353,7 @@ Router::route_auth("POST", "/update", $authFunction, function () {
     $course->setLink($_POST["link"]);
     if ($course->getIDcourse() === "") {
         $courseDAO->create($course);
-
+    //$course = $courseDAO->getID($course);
         //PDFController::generatePDFCustomers($course);
 
 
