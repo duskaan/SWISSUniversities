@@ -88,7 +88,7 @@ Router::route("POST", "/login", function () {
             $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
             $_SESSION["universityLogin"]["email"] = $email;
             $_SESSION["universityLogin"]["id"] = $university->getIDuniversity();
-            session_id($university->getIDuniversity());
+            //session_id($university->getIDuniversity());
             if (password_needs_rehash($university->getPassword(), PASSWORD_DEFAULT)) {
                 $university->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
                 $universityDAO->update($university);
@@ -249,7 +249,7 @@ Router::route_auth("POST", "/university-edit", $authFunction, function () {
         $universityDAO->update($university);
         $_SESSION["universityLogin"]["organization"] = $university->getOrganization();
         $_SESSION["universityLogin"]["email"] = $university->getEmail();
-        $_SESSION["universityLogin"]["id"] = session_id();
+        $_SESSION["universityLogin"]["id"] = $university->getIDuniversity();
         //$_SESSION["universityLogin"]["id"] = $universityDAO->findByEmail($_POST["email"])->getIDuniversity();
         $_SESSION["universityLogin"]["region"] = $university->getRegion();
         $_SESSION["universityLogin"]["description"] = $university->getDescription();
