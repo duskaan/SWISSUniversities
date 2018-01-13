@@ -285,7 +285,7 @@ Router::route_auth("POST", "/university-edit", $authFunction, function () {
         $_SESSION["universityLogin"]["description"] = $university->getDescription();
         $_SESSION["universityLogin"]["institute"] = $university->getInstitute();
 
-        Router::redirect("/Welcome");
+        Router::redirect("/CourseOverview");
 });
 
 Router::route_auth("GET", "/course-create", $authFunction, function () {
